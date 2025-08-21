@@ -1,5 +1,8 @@
 {
   "schemaVersion": 2,
-  "templateId": "nginx",
-  "templateVersion": "1.21-alpine"
+  "dockerfileLines": [
+    "FROM socialengine/nginx-spa:latest",
+    "COPY ./dist /app",
+    "RUN chmod -R 755 /app"
+  ]
 }
