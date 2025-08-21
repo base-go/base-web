@@ -915,19 +915,6 @@ r.GET(<span class="text-green-400">"/files/*filepath"</span>, middleware.Auth(au
 
 <script setup lang="ts">
 import DocsLayout from '@/layouts/DocsLayout.vue'
-import { useClipboard } from '@vueuse/core'
-
-const { copy } = useClipboard()
-
-const copyToClipboard = async (text: string, event: Event) => {
-  await copy(text)
-  const button = event.target as HTMLElement
-  const originalText = button.textContent
-  button.textContent = 'Copied!'
-  button.classList.add('!text-green-400')
-  setTimeout(() => {
-    button.textContent = originalText
-    button.classList.remove('!text-green-400')
-  }, 2000)
-}
+ 
+ 
 </script>
