@@ -25,10 +25,7 @@ const colorMode = useColorMode()
             class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             Documentation
           </router-link>
-          <a href="#"
-            class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-            Playground
-          </a>
+         
           <a href="https://github.com/BaseTechStack/basecmd" target="_blank"
             class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             GitHub
