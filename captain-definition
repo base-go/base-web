@@ -1,4 +1,5 @@
 {
   "schemaVersion": 2,
-  "templateId": "nginx"
+  "templateId": "nginx",
+  "templateVersion": "1.21-alpine"
 }
