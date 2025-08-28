@@ -12,7 +12,6 @@ declare module 'vue' {
     ExamplesSection: typeof import('./src/components/ExamplesSection.vue')['default']
     FeaturesSection: typeof import('./src/components/FeaturesSection.vue')['default']
     HeroSection: typeof import('./src/components/HeroSection.vue')['default']
-    InstallationSection: typeof import('./src/components/docs/InstallationSection.vue')['default']
     RestEndpointsSection: typeof import('./src/components/docs/RestEndpointsSection.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
