@@ -12,7 +12,7 @@
       <section class="mb-12">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Overview</h2>
         
-        <UAlert color="blue" variant="soft" class="mb-6">
+        <UAlert color="info" variant="soft" class="mb-6">
           <template #title>🔗 Event-Driven Architecture</template>
           <template #description>
             Base Framework's Emitter provides a thread-safe, async event system that enables decoupled communication between modules. It supports synchronous and asynchronous event emission, context cancellation, timeouts, and automatic panic recovery for robust event handling.
@@ -1056,4 +1056,6 @@ e.On(<span class="text-green-400">"file.uploaded"</span>, <span class="text-blue
   </DocsLayout>
 </template>
 
- 
+<script setup lang="ts">
+import DocsLayout from '@/layouts/DocsLayout.vue'
+</script>

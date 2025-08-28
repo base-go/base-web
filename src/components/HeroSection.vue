@@ -70,7 +70,7 @@ const codeExamples: CodeExample[] = [
           </a>
           
           <a
-            href="https://github.com/BaseTechStack/basecmd"
+            href="https://github.com/base-go/cmd"
             target="_blank"
             class="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 font-medium rounded-lg transition-colors"
           >

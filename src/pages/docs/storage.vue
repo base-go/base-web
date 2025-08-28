@@ -250,14 +250,14 @@ type Product struct {
     Price       float64              \`gorm:&quot;not null&quot;\`
     
     // Single image field
-    Thumbnail   storage.Attachment   \`gorm:&quot;type:jsonb&quot; field_type:&quot;image&quot;\`
+    Thumbnail   storage.Attachment   \`gorm:&quot;foreignKey:ModelId;references:Id&quot; field_type:&quot;image&quot;\`
     
     // Multiple images
-    Gallery     []storage.Attachment \`gorm:&quot;type:jsonb&quot; field_type:&quot;image&quot; multiple:&quot;true&quot;\`
+    Gallery     []storage.Attachment \`gorm:&quot;foreignKey:ModelId;references:Id&quot; field_type:&quot;image&quot; multiple:&quot;true&quot;\`
     
     // File attachments
-    Manual      storage.Attachment   \`gorm:&quot;type:jsonb&quot; field_type:&quot;file&quot;\`
-    Downloads   []storage.Attachment \`gorm:&quot;type:jsonb&quot; field_type:&quot;attachment&quot; multiple:&quot;true&quot;\`
+    Manual      storage.Attachment   \`gorm:&quot;foreignKey:ModelId;references:Id&quot; field_type:&quot;file&quot;\`
+    Downloads   []storage.Attachment \`gorm:&quot;foreignKey:ModelId;references:Id&quot; field_type:&quot;attachment&quot; multiple:&quot;true&quot;\`
 }`, $event)">
                   Copy
                 </button>
@@ -273,14 +273,14 @@ type Product struct {
     Price       <span class="text-purple-400">float64</span>              <span class="text-gray-400">`gorm:"not null"`</span>
     
     <span class="text-green-400">// Single image field</span>
-    Thumbnail   storage.Attachment   <span class="text-gray-400">`gorm:"type:jsonb" field_type:"image"`</span>
+    Thumbnail   storage.Attachment   <span class="text-gray-400">`gorm:"foreignKey:ModelId;references:Id" field_type:"image"`</span>
     
     <span class="text-green-400">// Multiple images</span>
-    Gallery     []storage.Attachment <span class="text-gray-400">`gorm:"type:jsonb" field_type:"image" multiple:"true"`</span>
+    Gallery     []storage.Attachment <span class="text-gray-400">`gorm:"foreignKey:ModelId;references:Id" field_type:"image" multiple:"true"`</span>
     
-    <span class="text-green-400">// File attachments</span>
-    Manual      storage.Attachment   <span class="text-gray-400">`gorm:"type:jsonb" field_type:"file"`</span>
-    Downloads   []storage.Attachment <span class="text-gray-400">`gorm:"type:jsonb" field_type:"attachment" multiple:"true"`</span>
+    <span class="text-green-400 ">// File attachments</span>
+    Manual      storage.Attachment   <span class="text-gray-400 text-nowrap">`gorm:"foreignKey:ModelId;references:Id"`</span>
+    Downloads   []storage.Attachment <span class="text-gray-400">`gorm:"foreignKey:ModelId;references:Id" multiple:"true"`</span>
 }</code></pre>
             </div>
           </UCard>

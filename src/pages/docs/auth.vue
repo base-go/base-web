@@ -597,6 +597,96 @@ API_KEY=api`, $event)">
           </div>
         </section>
 
+        <!-- Context Helpers & Retrieving User -->
+        <section>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Context Helpers &amp; Retrieving the Authenticated User</h2>
+          <div class="space-y-6">
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-2">
+                  <UIcon name="i-lucide-user-circle" class="h-4 w-4 text-blue-500" />
+                  <span class="font-semibold">Using the Request Context</span>
+                </div>
+              </template>
+
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  After successful authentication, the middleware saves the user object in the request <code>context.Context</code> using a type-safe key. Retrieve it anywhere deeper in your application with the helper below:
+                </p>
+
+                <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs text-gray-400">Go Example</span>
+                    <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`// Inside a handler or service\nif user, ok := middleware.UserFromContext[*models.User](c.Request.Context()); ok {\n    // user is *models.User\n}`, $event)">
+                      Copy
+                    </button>
+                  </div>
+                  <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// Inside a handler or service</span>
+if <span class="text-blue-400">user</span>, <span class="text-blue-400">ok</span> := middleware.<span class="text-yellow-400">UserFromContext[*models.User]</span>(c.Request.Context()); ok {
+    <span class="text-green-400">// user is *models.User</span>
+}</code></pre>
+                </div>
+
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  The same approach works for API-key data (<code>api_key_data</code>) or any other custom values you attach to the context.
+                </p>
+              </div>
+            </UCard>
+          </div>
+        </section>
+
+        <!-- Custom Context Values -->
+        <section>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Attaching Custom Values to Context</h2>
+          <div class="space-y-6">
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-2">
+                  <UIcon name="i-lucide-package" class="h-4 w-4 text-green-500" />
+                  <span class="font-semibold">Adding Your Own Context Keys</span>
+                </div>
+              </template>
+
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  Need to pass request-scoped data (e.g. <code>project_id</code>) deeper into your services? Define a unique pointer key and use <code>context.WithValue</code> just like the built-in auth middleware:
+                </p>
+
+                <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs text-gray-400">Go Example</span>
+                    <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`type ctxKey struct{ name string }\nvar projectIDKey = &ctxKey{&quot;project_id&quot;}\n\n// Middleware that stores project_id from route params\nfunc ProjectIDMiddleware(next router.HandlerFunc) router.HandlerFunc {\n    return func(c *router.Context) error {\n        id := c.Param(&quot;project_id&quot;)\n        ctx := context.WithValue(c.Request.Context(), projectIDKey, id)\n        c.Request = c.Request.WithContext(ctx)\n        return next(c)\n    }\n}\n\n// Helper to retrieve it later\nfunc ProjectIDFromContext(ctx context.Context) (string, bool) {\n    v, ok := ctx.Value(projectIDKey).(string)\n    return v, ok\n}`, $event)">
+                      Copy
+                    </button>
+                  </div>
+                  <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">type</span> ctxKey <span class="text-blue-400">struct</span>{ name <span class="text-blue-400">string</span> }
+<span class="text-blue-400">var</span> projectIDKey = &amp;ctxKey{<span class="text-yellow-400">"project_id"</span>}
+
+<span class="text-green-400">// Middleware that stores project_id from route params</span>
+<span class="text-blue-400">func</span> ProjectIDMiddleware(next router.HandlerFunc) router.HandlerFunc {
+    <span class="text-blue-400">return</span> <span class="text-blue-400">func</span>(c *router.Context) <span class="text-blue-400">error</span> {
+        id := c.Param(<span class="text-yellow-400">"project_id"</span>)
+        ctx := context.WithValue(c.Request.Context(), projectIDKey, id)
+        c.Request = c.Request.WithContext(ctx)
+        <span class="text-blue-400">return</span> next(c)
+    }
+}
+
+<span class="text-green-400">// Helper to retrieve it later</span>
+<span class="text-blue-400">func</span> ProjectIDFromContext(ctx context.Context) (<span class="text-blue-400">string</span>, <span class="text-blue-400">bool</span>) {
+    v, ok := ctx.Value(projectIDKey).(<span class="text-blue-400">string</span>)
+    <span class="text-blue-400">return</span> v, ok
+}</code></pre>
+                </div>
+
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  Remember: context values should be used <em>sparingly</em> for data that needs to travel across API boundaries. For regular function parameters prefer explicit arguments.
+                </p>
+              </div>
+            </UCard>
+          </div>
+        </section>
+
         <!-- Authorization System -->
         <section>
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Authorization System</h2>

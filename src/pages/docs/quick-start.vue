@@ -19,11 +19,11 @@
                 <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded flex items-center justify-center">
                   <Icon name="i-lucide-download" class="w-5 h-5" />
                 </div>
-                <h3 class="font-semibold">Go 1.22+</h3>
+                <h3 class="font-semibold">Go 1.24+</h3>
               </div>
             </template>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Base Framework requires Go 1.22 or later for modern language features and performance.
+              Base Framework requires Go 1.24 or later for modern language features and performance.
             </p>
           </UCard>
 
@@ -44,7 +44,7 @@
 
         <UAlert 
           icon="i-heroicons-information-circle"
-          color="blue"
+          color="info"
           variant="soft"
           title="Installation Guide"
           description="If you haven't installed the Base CLI yet, check out our Installation page for detailed setup instructions."
@@ -127,7 +127,8 @@ base g post title:string content:text slug:slug published:bool author_id:uint
               </p>
               <UCard class="bg-gray-50 dark:bg-gray-800">
                 <pre class="text-sm overflow-x-auto"><code class="language-bash"># Start with hot reloading and docs
-base start -r -d
+base docs
+base start -r  
 
 # Your API is now running at:
 # http://localhost:8080 - Main API
@@ -148,27 +149,27 @@ base start -r -d
         
         <div class="grid gap-3">
           <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <UBadge color="green" variant="soft" size="sm">GET</UBadge>
+            <UBadge color="success" variant="soft" size="sm">GET</UBadge>
             <UKbd>/api/posts</UKbd>
             <span class="text-sm text-gray-600 dark:text-gray-400">List all posts with pagination</span>
           </div>
           <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <UBadge color="blue" variant="soft" size="sm">POST</UBadge>
+            <UBadge color="info" variant="soft" size="sm">POST</UBadge>
             <UKbd>/api/posts</UKbd>
             <span class="text-sm text-gray-600 dark:text-gray-400">Create a new post</span>
           </div>
           <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <UBadge color="green" variant="soft" size="sm">GET</UBadge>
+            <UBadge color="success" variant="soft" size="sm">GET</UBadge>
             <UKbd>/api/posts/{id}</UKbd>
             <span class="text-sm text-gray-600 dark:text-gray-400">Get post by ID</span>
           </div>
           <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <UBadge color="yellow" variant="soft" size="sm">PUT</UBadge>
+            <UBadge color="warning" variant="soft" size="sm">PUT</UBadge>
             <UKbd>/api/posts/{id}</UKbd>
             <span class="text-sm text-gray-600 dark:text-gray-400">Update existing post</span>
           </div>
           <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <UBadge color="red" variant="soft" size="sm">DELETE</UBadge>
+            <UBadge color="error" variant="soft" size="sm">DELETE</UBadge>
             <UKbd>/api/posts/{id}</UKbd>
             <span class="text-sm text-gray-600 dark:text-gray-400">Delete post</span>
           </div>
@@ -184,7 +185,7 @@ base start -r -d
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-play" class="w-5 h-5" />
+                  <PlusCircle class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">Create a Post</h3>
               </div>
@@ -206,7 +207,7 @@ base start -r -d
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-list" class="w-5 h-5" />
+                  <List class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">List All Posts</h3>
               </div>
@@ -230,7 +231,7 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-database" class="w-5 h-5" />
+                  <Database class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">Database & ORM</h3>
               </div>
@@ -247,7 +248,7 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-shield" class="w-5 h-5" />
+                  <ShieldCheck class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">Security & Validation</h3>
               </div>
@@ -264,7 +265,7 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-file-text" class="w-5 h-5" />
+                  <ScrollText class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">Documentation</h3>
               </div>
@@ -281,7 +282,7 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-zap" class="w-5 h-5" />
+                  <CodeXml class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">Developer Experience</h3>
               </div>
@@ -305,7 +306,7 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-book-open" class="w-5 h-5" />
+                  <Rss name="i-lucide-book-open" class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">Blog Tutorial</h3>
               </div>
@@ -322,7 +323,7 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-terminal" class="w-5 h-5" />
+                  <Terminal name="i-lucide-terminal" class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">CLI Reference</h3>
               </div>
@@ -339,7 +340,7 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
             <template #header>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 rounded flex items-center justify-center">
-                  <Icon name="i-lucide-cpu" class="w-5 h-5" />
+                  <Cpu name="i-lucide-cpu" class="w-5 h-5" />
                 </div>
                 <h3 class="font-semibold">Architecture</h3>
               </div>
@@ -367,4 +368,5 @@ curl "http://localhost:8080/api/posts?page=1&limit=10"</code></pre>
 
 <script setup lang="ts">
 import DocsLayout from '@/layouts/DocsLayout.vue'
+import { List, PlusCircle, Database, ShieldCheck,ScrollText, CodeXml, Rss, Terminal, Cpu } from 'lucide-vue-next';
 </script>

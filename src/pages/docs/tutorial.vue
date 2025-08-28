@@ -38,17 +38,13 @@
           </UCard>
 
           <div class="mt-6">
-            <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-3">What This Creates:</h4>
+            <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-3">You'll get initial structure:</h4>
             <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
               <pre class="text-sm text-gray-700 dark:text-gray-300"><code>blog/
         ├── app/
         │ ├── init.go <span class="text-gray-500"># Module registration</span>
         │ └── models/ <span class="text-gray-500"># Your database models</span>
-        ├── main.go <span class="text-gray-500"># Application entry point</span>
-        ├── go.mod <span class="text-gray-500"># Go module dependencies</span>
-        ├── .env <span class="text-gray-500"># Environment configuration</span>
-        ├── Makefile <span class="text-gray-500"># Build automation</span>
-        └── test/ <span class="text-gray-500"># Test infrastructure</span></code></pre>
+        └── core/ <span class="text-gray-500"># Core modules</span></code></pre>
             </div>
           </div>
         </section>
@@ -64,11 +60,33 @@
             in our blog project:
           </p>
 
-          <UAlert color="blue" variant="soft" title="Core Modules Available"
+          <UAlert color="success" variant="soft" title="Core Modules Available"
             description="Your blog project includes core modules: profile (User management), media (File handling), authentication, and authorization."
             class="mb-6" />
 
           <div class="grid gap-4 md:grid-cols-2">
+            <UCard>
+              <div class="space-y-2">
+                <h5 class="font-medium text-gray-900 dark:text-white">👤 Authentication Module</h5>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                  <li>• User model with auth features</li>
+                  <li>• Login, register, forgot password, reset password, logout endpoints</li>
+                  <li>• Located at <UKbd size="sm">core/app/authentication/</UKbd>
+                  </li>
+                </ul>
+              </div>
+            </UCard>
+            <UCard>
+              <div class="space-y-2">
+                <h5 class="font-medium text-gray-900 dark:text-white">👤 Authorization Module</h5>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                  <li>• Role model with auth features</li>
+                  <li>• Permission model with auth features</li>
+                  <li>• Located at <UKbd size="sm">core/app/authorization/</UKbd>
+                  </li>
+                </ul>
+              </div>
+            </UCard>
             <UCard>
               <div class="space-y-2">
                 <h5 class="font-medium text-gray-900 dark:text-white">👤 Profile Module</h5>
@@ -81,7 +99,6 @@
                 </ul>
               </div>
             </UCard>
-
             <UCard>
               <div class="space-y-2">
                 <h5 class="font-medium text-gray-900 dark:text-white">📁 Media Module</h5>
@@ -95,6 +112,10 @@
               </div>
             </UCard>
           </div>
+          <USeparator label="Read more" class="h-8" />
+          <UAlert color="info" variant="soft" title="Core Modules Available"
+            description="Read more about core modules in the Core Concepts section."
+            class="mb-6" />
         </section>
 
         <!-- Step 3: Generate Post Module with Relationships -->
@@ -251,7 +272,7 @@
             </div>
           </div>
 
-          <UAlert color="green" variant="soft" title="Success!"
+          <UAlert color="success" variant="soft" title="Success!"
             description="Your blog API is now running with complete CRUD operations, automatic database migrations, and interactive API documentation!"
             class="mt-6" />
         </section>
@@ -267,32 +288,32 @@
           <div class="space-y-4">
             <div class="grid gap-3">
               <div class="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <UBadge color="blue" variant="soft" size="sm">POST</UBadge>
+                <UBadge color="info" variant="soft" size="sm">POST</UBadge>
                 <UKbd>/api/posts</UKbd>
                 <span class="text-sm text-gray-600 dark:text-gray-400">Create a new blog post</span>
               </div>
               <div class="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <UBadge color="green" variant="soft" size="sm">GET</UBadge>
+                <UBadge color="success" variant="soft" size="sm">GET</UBadge>
                 <UKbd>/api/posts</UKbd>
                 <span class="text-sm text-gray-600 dark:text-gray-400">Get paginated list of posts</span>
               </div>
               <div class="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <UBadge color="green" variant="soft" size="sm">GET</UBadge>
+                <UBadge color="success" variant="soft" size="sm">GET</UBadge>
                 <UKbd>/api/posts/all</UKbd>
                 <span class="text-sm text-gray-600 dark:text-gray-400">Get all posts (unpaginated)</span>
               </div>
               <div class="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <UBadge color="green" variant="soft" size="sm">GET</UBadge>
+                <UBadge color="success" variant="soft" size="sm">GET</UBadge>
                 <UKbd>/api/posts/:id</UKbd>
                 <span class="text-sm text-gray-600 dark:text-gray-400">Get specific post by ID</span>
               </div>
               <div class="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <UBadge color="yellow" variant="soft" size="sm">PUT</UBadge>
+                <UBadge color="warning" variant="soft" size="sm">PUT</UBadge>
                 <UKbd>/api/posts/:id</UKbd>
                 <span class="text-sm text-gray-600 dark:text-gray-400">Update existing post</span>
               </div>
               <div class="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <UBadge color="red" variant="soft" size="sm">DELETE</UBadge>
+                <UBadge color="error" variant="soft" size="sm">DELETE</UBadge>
                 <UKbd>/api/posts/:id</UKbd>
                 <span class="text-sm text-gray-600 dark:text-gray-400">Delete post</span>
               </div>
@@ -314,11 +335,13 @@
 
                 <div class="bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
                   <pre class="text-sm text-gray-300"><code><span class="text-blue-400">curl</span> -X POST \
-  http://localhost:8100/api/users \
+  http://localhost:8100/api/auth/register \
   -H <span class="text-green-400">"Content-Type: application/json"</span> \
   -d <span class="text-yellow-400">'{
-        "name": "John Doe",
-        "email": "john@example.com"
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john@example.com",
+        "password": "password"
       }'</span></code></pre>
                 </div>
               </UCard>
@@ -464,7 +487,7 @@
                       </button>
                     </div>
                     <pre class="text-sm text-gray-300 whitespace-pre-wrap">
-              <code>
+              <code >
 <span class="text-blue-400">base g</span> <span class="text-yellow-400">Category</span> <span
   class="text-green-400">\
   name:string \
@@ -586,8 +609,7 @@
                         Copy
                       </button>
                     </div>
-                    <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">base start</span>
-                <span class="text-yellow-400">-d</span></code></pre>
+                    <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">base s -d</span></code></pre>
                   </div>
                   <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">
                     Includes automatic file upload endpoints, validation, and Swagger docs

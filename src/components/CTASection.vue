@@ -30,7 +30,7 @@ base start -r</code></pre>
       
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
-          href="https://github.com/BaseTechStack/basecmd"
+          href="https://github.com/base-go/cmd"
           target="_blank"
           class="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-100 text-gray-900 font-semibold rounded-lg transition-colors"
         >

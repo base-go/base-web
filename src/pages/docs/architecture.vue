@@ -154,7 +154,7 @@
               <UBadge color="blue" size="sm">5</UBadge>
               <div>
                 <h4 class="font-medium text-gray-900 dark:text-white">Model Operations</h4>
-                <p class="text-sm text-gray-600 dark:text-gray-300">Database queries through GORM</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Database models for GORM auto-migrations</p>
               </div>
             </div>
             

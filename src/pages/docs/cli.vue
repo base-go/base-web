@@ -877,7 +877,7 @@ base docs -o api-docs -s</code></pre>
             <UCard class="bg-gray-50 dark:bg-gray-800">
               <pre class="text-sm overflow-x-auto"><code class="language-bash">$ base update
 Updating Base Core...
-Downloading core from: https://github.com/BaseTechStack/base/archive/refs/tags/v2.1.7.zip
+Downloading core from: https://github.com/base-go/base-core/archive/refs/tags/v2.1.7.zip
 Core directory updated successfully.
 Base Core updated successfully.</code></pre>
             </UCard>
@@ -956,7 +956,7 @@ $ base upgrade
 🎉 NEW in v2.0.0: Automatic Relationship Detection!
    • Fields ending with '_id' now auto-generate GORM relationships
 ⚠️  To upgrade to the major version, use: base upgrade --major
-📚 Major version changelog: https://github.com/BaseTechStack/basecmd/releases/tag/v2.0.0</code></pre>
+📚 Major version changelog: https://github.com/base-go/cmd/releases/tag/v2.0.0</code></pre>
             </UCard>
           </UCard>
 

@@ -26,7 +26,7 @@ const colorMode = useColorMode()
             Documentation
           </router-link>
          
-          <a href="https://github.com/BaseTechStack/basecmd" target="_blank"
+          <a href="https://github.com/base-go/cmd" target="_blank"
             class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             GitHub
           </a>
@@ -36,7 +36,7 @@ const colorMode = useColorMode()
           <UButton :icon="colorMode === 'dark' ? 'i-lucide-moon' : 'i-lucide-sun'" color="neutral" variant="ghost"
             @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'" />
 
-          <a href="https://github.com/BaseTechStack/basecmd" target="_blank"
+          <a href="https://github.com/base-go/cmd" target="_blank"
             class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">
             Get Started
           </a>

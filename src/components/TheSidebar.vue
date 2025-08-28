@@ -66,7 +66,7 @@ const items = ref<NavigationMenuItem[][]>([
             label: 'Auth & Auth',
             icon: 'i-lucide-shield-check',
             description: 'JWT, OAuth, RBAC, Social login, Permissions and security',
-            to: '/docs/authentication'
+            to: '/docs/auth'
         },
         {
             label: 'Storage',
@@ -176,7 +176,7 @@ const items = ref<NavigationMenuItem[][]>([
             label: 'GitHub',
             icon: 'i-simple-icons-github',
             badge: 'v2.0.1',
-            to: 'https://github.com/BaseTechStack/basecmd',
+            to: 'https://github.com/base-go/cmd',
             target: '_blank'
         },
         {

@@ -5,8 +5,8 @@ const footerSections = [
     links: [
       { label: 'Features', href: '#features' },
       { label: 'Examples', href: '#examples' },
-      { label: 'GitHub', href: 'https://github.com/BaseTechStack/basecmd' },
-      { label: 'Releases', href: 'https://github.com/BaseTechStack/basecmd/releases' }
+      { label: 'GitHub', href: 'https://github.com/base-go/cmd' },
+      { label: 'Releases', href: 'https://github.com/base-go/cmd/releases' }
     ]
   },
   {
@@ -14,15 +14,15 @@ const footerSections = [
     links: [
       { label: 'Getting Started', href: '#' },
       { label: 'CLI Reference', href: '#' },
-      { label: 'Changelog', href: 'https://github.com/BaseTechStack/basecmd/blob/main/CHANGELOG.md' },
+      { label: 'Changelog', href: 'https://github.com/base-go/cmd/blob/main/CHANGELOG.md' },
       { label: 'API Documentation', href: '#' }
     ]
   },
   {
     title: 'Community',
     links: [
-      { label: 'Issues', href: 'https://github.com/BaseTechStack/basecmd/issues' },
-      { label: 'Discussions', href: 'https://github.com/BaseTechStack/basecmd/discussions' },
+      { label: 'Issues', href: 'https://github.com/base-go/cmd/issues' },
+      { label: 'Discussions', href: 'https://github.com/base-go/cmd/discussions' },
       { label: 'Discord', href: '#' },
       { label: 'Twitter', href: '#' }
     ]
@@ -33,7 +33,7 @@ const footerSections = [
       { label: 'Tutorials', href: '#' },
       { label: 'Best Practices', href: '#' },
       { label: 'Installation Guide', href: '#' },
-      { label: 'Contributing', href: 'https://github.com/BaseTechStack/basecmd/blob/main/CONTRIBUTING.md' }
+      { label: 'Contributing', href: 'https://github.com/base-go/cmd/blob/main/CONTRIBUTING.md' }
     ]
   }
 ]

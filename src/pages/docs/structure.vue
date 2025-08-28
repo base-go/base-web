@@ -29,19 +29,18 @@
             </template>
             
             <div class="bg-gray-900 dark:bg-gray-950 rounded-lg p-6 overflow-x-auto">
-              <pre class="text-sm text-gray-300"><code>my-base-project/
+              <pre class="text-sm text-gray-300">
+                <code>my-base-project/
 ├── app/                          <span class="text-green-400"># Your Application Layer</span>
 │   ├── models/                   <span class="text-gray-500"># Database models (GORM)</span>
-│   ├── user/                     <span class="text-gray-500"># User module</span>
-│   ├── post/                     <span class="text-gray-500"># Post module</span>
 │   └── init.go                   <span class="text-gray-500"># App initialization</span>
 ├── @base/core/                   <span class="text-blue-400"># Base Framework Core (@base/core)</span>
 │   ├── app/                      <span class="text-cyan-400"># Built-in app modules</span>
 │   │   ├── authentication/       <span class="text-gray-500"># Auth system</span>
 │   │   ├── authorization/        <span class="text-gray-500"># Authorization</span>
-│   │   ├── media/               <span class="text-gray-500"># Media handling</span>
-│   │   ├── oauth/               <span class="text-gray-500"># OAuth providers</span>
-│   │   └── profile/             <span class="text-gray-500"># User profiles</span>
+│   │   ├── media/                <span class="text-gray-500"># Media handling</span>
+│   │   ├── oauth/                <span class="text-gray-500"># OAuth providers</span>
+│   │   └── profile/              <span class="text-gray-500"># User profiles</span>
 │   ├── base/                     <span class="text-gray-500"># Base controller/service</span>
 │   ├── config/                   <span class="text-gray-500"># Configuration</span>
 │   ├── database/                 <span class="text-gray-500"># Database connection</span>
@@ -53,22 +52,21 @@
 │   ├── logger/                   <span class="text-gray-500"># Logging system</span>
 │   ├── module/                   <span class="text-gray-500"># Module system</span>
 │   ├── router/                   <span class="text-gray-500"># Router & middleware</span>
-│   │   └── middleware/          <span class="text-gray-500"># Built-in middleware</span>
+│   │   └── middleware/           <span class="text-gray-500"># Built-in middleware</span>
 │   ├── storage/                  <span class="text-gray-500"># File storage (local/S3/R2)</span>
-│   ├── swagger/                  <span class="text-gray-500"># API documentation</span>
 │   ├── translation/              <span class="text-gray-500"># Internationalization</span>
 │   ├── types/                    <span class="text-gray-500"># Common types</span>
 │   ├── validator/                <span class="text-gray-500"># Validation system</span>
 │   └── websocket/                <span class="text-gray-500"># WebSocket support</span>
-├── test/                         <span class="text-yellow-400"># Testing Infrastructure</span>
-├── storage/                      <span class="text-purple-400"># Runtime Storage</span>
+├── storage/                      <span class="text-purple-400"># Active Local Storage</span>
 │   ├── app/                      <span class="text-gray-500"># Uploaded files</span>
 │   ├── logs/                     <span class="text-gray-500"># Application logs</span>
 │   └── temp/                     <span class="text-gray-500"># Temporary files</span>
 ├── .env                          <span class="text-gray-500"># Environment config</span>
 ├── go.mod                        <span class="text-gray-500"># Go module definition</span>
-├── main.go                       <span class="text-gray-500"># Application entry point</span>
-└── Makefile                      <span class="text-gray-500"># Build automation</span></code></pre>
+└── main.go                       <span class="text-gray-500"># Application entry point</span>
+</code>
+</pre>
             </div>
           </UCard>
         </section>
@@ -148,7 +146,7 @@
               </template>
               
               <UAlert 
-                color="purple" 
+                color="success" 
                 variant="soft" 
                 title="Framework Core Modules" 
                 description="The core/ directory contains Base Framework's core system modules (@base/core/*) that provide infrastructure services to your application modules."
@@ -270,16 +268,6 @@
                   </div>
                 </div>
                 
-                <div>
-                  <h4 class="font-medium text-gray-900 dark:text-white mb-2">
-                    <UIcon name="i-lucide-globe" class="h-4 w-4 inline mr-1" />
-                    swagger/
-                  </h4>
-                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">API documentation generation</p>
-                  <div class="text-xs text-gray-500 dark:text-gray-400 space-y-1">
-                    <div>• swagger.go</div>
-                  </div>
-                </div>
                 
                 <div>
                   <h4 class="font-medium text-gray-900 dark:text-white mb-2">
@@ -388,44 +376,11 @@
                   </div>
                 </div>
                 
-                <div>
-                  <h4 class="font-medium text-gray-900 dark:text-white mb-2">
-                    <UIcon name="i-lucide-layers" class="h-4 w-4 inline mr-1" />
-                    base/
-                  </h4>
-                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Base controller and service classes</p>
-                  <div class="text-xs text-gray-500 dark:text-gray-400 space-y-1">
-                    <div>• controller.go, service.go</div>
-                    <div>• module.go</div>
-                  </div>
-                </div>
+                
               </div>
             </UCard>
 
-            <UCard>
-              <template #header>
-                <div class="flex items-center space-x-3">
-                  <div class="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                    <UIcon name="i-lucide-test-tube" class="h-5 w-5 text-green-600 dark:text-green-400" />
-                  </div>
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">test/</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Testing infrastructure and test files</p>
-                  </div>
-                </div>
-              </template>
-              
-              <div class="space-y-3">
-                <div>
-                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">test_helper.go</h4>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">Common test utilities and setup functions</p>
-                </div>
-                <div>
-                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">*_test.go</h4>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">Individual test files for each module</p>
-                </div>
-              </div>
-            </UCard>
+            
 
             <UCard>
               <template #header>
@@ -455,7 +410,44 @@
                 </div>
               </div>
             </UCard>
-            
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
+                    <UIcon name="i-lucide-cable" class="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">static/</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">WebSocket Examples folder</p>
+                  </div>
+                </div>
+              </template>
+              
+              <div class="grid gap-4 md:grid-cols-3">
+                <div>
+                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">chat.html</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">WebSocket real-time chat with rooms example</p>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">draw.html</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">WebSocket real-time multi-user draw example</p>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">kanban.html</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">WebSocket real-time kanban example</p>
+                </div><div>
+                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">editor.html</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">WebSocket real-time multi-user editor example</p>
+                </div><div>
+                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">spreadsheet.html</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">WebSocket real-time multi-user spreadsheet example</p>
+                </div><div>
+                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">monitor.html</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">WebSocket system monitor example</p>
+                </div>
+
+              </div>
+            </UCard>
           </div>
         </section>
         
@@ -747,8 +739,7 @@ func (m *UserModule) Register(r *router.Router) {
 ✓ Created app/user/controller.go  
 ✓ Created app/user/service.go
 ✓ Created app/user/module.go
-✓ Updated app/init.go
-✓ Created test/user_test.go</code></pre>
+✓ Updated app/init.go</code></pre>
             </div>
           </div>
         </section>
@@ -836,17 +827,7 @@ func (m *UserModule) Register(r *router.Router) {
               </div>
             </UCard>
             
-            <UCard>
-              <div class="flex items-start space-x-3">
-                <UIcon name="i-lucide-check-circle" class="h-5 w-5 text-green-500 mt-1" />
-                <div>
-                  <h4 class="font-medium text-gray-900 dark:text-white mb-1">Test your modules</h4>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">
-                    Use the <UKbd size="xs">test/</UKbd> directory and Base's testing helpers for comprehensive coverage
-                  </p>
-                </div>
-              </div>
-            </UCard>
+           
           </div>
         </section>
       </div>
