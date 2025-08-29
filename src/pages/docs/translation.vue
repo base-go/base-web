@@ -122,6 +122,136 @@
         </div>
       </section>
 
+      <!-- CLI Generation -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">CLI Generation</h2>
+        
+        <UAlert color="amber" variant="soft" class="mb-6">
+          <template #title>🚀 Quick Setup</template>
+          <template #description>
+            Use the Base CLI to automatically generate models with translation fields. The CLI handles all the boilerplate code for you, including automatic translation loading in service methods.
+          </template>
+        </UAlert>
+
+        <div class="space-y-6">
+          <UCard>
+            <template #header>
+              <div class="flex items-center space-x-2">
+                <UIcon name="i-lucide-terminal" class="h-5 w-5 text-green-500" />
+                <span class="font-semibold">Generate Model with Translation Fields</span>
+              </div>
+            </template>
+            
+            <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-gray-400">Terminal</span>
+                
+              </div>
+              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400"># Generate a Post model with translatable title field</span>
+./cmd g Post title:translation desc:text feat:image
+
+<span class="text-green-400"># Generate a Product model with translatable fields</span>
+./cmd g Product name:translation description:translation price:float category_id:uint
+
+<span class="text-green-400"># Generate a Page model with multiple translatable fields</span>
+./cmd g Page title:translation content:translation meta_title:translation meta_description:translation slug:string</code></pre>
+            </div>
+          </UCard>
+
+          <UCard>
+            <template #header>
+              <div class="flex items-center space-x-2">
+                <UIcon name="i-lucide-code" class="h-5 w-5 text-blue-500" />
+                <span class="font-semibold">Generated Model Structure</span>
+              </div>
+            </template>
+            
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              When you use <code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">title:translation</code>, the CLI automatically generates:
+            </p>
+
+            <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-gray-400">models/post.go</span>
+                
+              </div>
+              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">type</span> Post <span class="text-blue-400">struct</span> {
+    Id        <span class="text-yellow-400">uint</span>                `json:<span class="text-green-400">"id"</span> gorm:<span class="text-green-400">"primarykey"</span>`
+    CreatedAt <span class="text-yellow-400">time.Time</span>           `json:<span class="text-green-400">"created_at"</span>`
+    UpdatedAt <span class="text-yellow-400">time.Time</span>           `json:<span class="text-green-400">"updated_at"</span>`
+    DeletedAt <span class="text-yellow-400">gorm.DeletedAt</span>      `json:<span class="text-green-400">"deleted_at"</span> gorm:<span class="text-green-400">"index"</span>`
+    Title     <span class="text-yellow-400">translation.Field</span>   `json:<span class="text-green-400">"title"</span>`  <span class="text-gray-400">// Translatable field</span>
+    Desc      <span class="text-yellow-400">string</span>              `json:<span class="text-green-400">"desc"</span>`
+    FeatId    <span class="text-yellow-400">uint</span>                `json:<span class="text-green-400">"feat_id,omitempty"</span>`
+    Feat      <span class="text-yellow-400">*storage.Attachment</span> `json:<span class="text-green-400">"feat,omitempty"</span>`
+}
+
+<span class="text-gray-400">// Request types use string for input</span>
+<span class="text-blue-400">type</span> CreatePostRequest <span class="text-blue-400">struct</span> {
+    Title <span class="text-yellow-400">string</span> `json:<span class="text-green-400">"title"</span> binding:<span class="text-green-400">"required"</span>`
+    Desc  <span class="text-yellow-400">string</span> `json:<span class="text-green-400">"desc"</span>`
+}
+
+<span class="text-gray-400">// Response types return translation.Field with full translation object</span>
+<span class="text-blue-400">type</span> PostResponse <span class="text-blue-400">struct</span> {
+    Id        <span class="text-yellow-400">uint</span>              `json:<span class="text-green-400">"id"</span>`
+    CreatedAt <span class="text-yellow-400">time.Time</span>         `json:<span class="text-green-400">"created_at"</span>`
+    UpdatedAt <span class="text-yellow-400">time.Time</span>         `json:<span class="text-green-400">"updated_at"</span>`
+    DeletedAt <span class="text-yellow-400">gorm.DeletedAt</span>    `json:<span class="text-green-400">"deleted_at"</span>`
+    Title     <span class="text-yellow-400">translation.Field</span> `json:<span class="text-green-400">"title"</span>`  <span class="text-gray-400">// Returns translation object</span>
+    Desc      <span class="text-yellow-400">string</span>            `json:<span class="text-green-400">"desc"</span>`
+}</code></pre>
+            </div>
+          </UCard>
+
+          <UCard>
+            <template #header>
+              <div class="flex items-center space-x-2">
+                <UIcon name="i-lucide-settings" class="h-5 w-5 text-purple-500" />
+                <span class="font-semibold">Automatic Service Integration</span>
+              </div>
+            </template>
+            
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              The CLI automatically generates service methods that load translations:
+            </p>
+
+            <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-gray-400">posts/service.go - Auto-generated</span>
+               
+              </div>
+              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">func</span> (s *PostService) <span class="text-yellow-400">GetById</span>(id <span class="text-purple-400">uint</span>) (*models.Post, <span class="text-purple-400">error</span>) {
+    <span class="text-blue-400">var</span> item models.Post
+    <span class="text-blue-400">if</span> err := s.DB.Preload(clause.Associations).First(&item, id).Error; err != <span class="text-purple-400">nil</span> {
+        <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>, err
+    }
+    
+    <span class="text-green-400">// Automatically load translations for translation fields</span>
+    s.loadTranslationsForItem(&item)
+    
+    <span class="text-blue-400">return</span> &item, <span class="text-purple-400">nil</span>
+}
+
+<span class="text-blue-400">func</span> (s *PostService) <span class="text-yellow-400">loadTranslationsForItem</span>(item *models.Post) <span class="text-purple-400">error</span> {
+    <span class="text-blue-400">if</span> item == <span class="text-purple-400">nil</span> {
+        <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>
+    }
+    modelName := item.GetModelName()
+    modelId := item.GetId()
+    
+    <span class="text-green-400">// Load translations for Title field</span>
+    <span class="text-blue-400">if</span> err := s.TranslationHelper.Service.LoadTranslationsForField(&item.Title, modelName, modelId, <span class="text-green-400">"title"</span>); err != <span class="text-purple-400">nil</span> {
+        s.Logger.Error(<span class="text-green-400">"Failed to load translations for Title"</span>, logger.String(<span class="text-green-400">"error"</span>, err.Error()))
+    }
+    
+    <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>
+}</code></pre>
+            </div>
+          </UCard>
+        </div>
+      </section>
+
       <!-- Translation Field Usage -->
       <section class="mb-12">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Translation Field Usage</h2>
@@ -138,32 +268,7 @@
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-gray-400">models/post.go</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`package models
-
-import (
-    &quot;base/core/translation&quot;
-    &quot;time&quot;
-    &quot;gorm.io/gorm&quot;
-)
-
-type Post struct {
-    ID          uint                   \`gorm:&quot;primarykey&quot;\`
-    CreatedAt   time.Time              
-    UpdatedAt   time.Time              
-    DeletedAt   gorm.DeletedAt         \`gorm:&quot;index&quot;\`
-    
-    // Translatable fields
-    Title       translation.Field      \`gorm:&quot;type:text&quot;\`
-    Content     translation.Field      \`gorm:&quot;type:text&quot;\`
-    Description translation.Field      \`gorm:&quot;type:text&quot;\`
-    
-    // Regular fields
-    AuthorID    uint                   \`gorm:&quot;not null&quot;\`
-    Published   bool                   \`gorm:&quot;default:false&quot;\`
-    ViewCount   int                    \`gorm:&quot;default:0&quot;\`
-}`, $event)">
-                  Copy
-                </button>
+               
               </div>
               <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">package</span> models
 
@@ -203,29 +308,7 @@ type Post struct {
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-gray-400">Basic Field Operations</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`// Create a new post with original text
-post := &Post{
-    Title:       translation.NewField(&quot;Hello World&quot;),
-    Content:     translation.NewField(&quot;This is the original content&quot;),
-    Description: translation.NewField(&quot;Original description&quot;),
-}
-
-// Set translations for different languages
-post.Title.SetTranslation(&quot;es&quot;, &quot;Hola Mundo&quot;)
-post.Title.SetTranslation(&quot;fr&quot;, &quot;Bonjour le Monde&quot;)
-
-// Get translation for specific language with fallback
-titleInSpanish := post.Title.GetTranslationOrOriginal(&quot;es&quot;)  // Returns: &quot;Hola Mundo&quot;
-titleInGerman := post.Title.GetTranslationOrOriginal(&quot;de&quot;)   // Returns: &quot;Hello World&quot; (fallback)
-
-// Check if translation exists
-hasSpanish := post.Title.HasTranslation(&quot;es&quot;)  // Returns: true
-hasGerman := post.Title.HasTranslation(&quot;de&quot;)   // Returns: false
-
-// Get all available languages for a field
-languages := post.Title.GetAvailableLanguages()  // Returns: [&quot;es&quot;, &quot;fr&quot;]`, $event)">
-                  Copy
-                </button>
+                 
               </div>
               <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// Create a new post with original text</span>
 post := &Post{
@@ -268,99 +351,45 @@ languages := post.Title.GetAvailableLanguages()  <span class="text-gray-400">// 
             
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
-                <span class="text-xs text-gray-400">post/service.go</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`func (s *PostService) CreateWithTranslations(request *CreatePostRequest) (*Post, error) {
-    // Create post with original content
-    post := &Post{
-        Title:       translation.NewField(request.Title),
-        Content:     translation.NewField(request.Content),
-        Description: translation.NewField(request.Description),
-        AuthorID:    request.AuthorID,
-        Published:   request.Published,
-    }
-    
-    // Save to database
-    if err := s.DB.Create(post).Error; err != nil {
-        return nil, err
-    }
-    
-    // Add translations if provided
-    if request.Translations != nil {
-        for language, translations := range request.Translations {
-            translationMap := make(map[string]string)
-            
-            if translations.Title != &quot;&quot; {
-                translationMap[&quot;title&quot;] = translations.Title
-            }
-            if translations.Content != &quot;&quot; {
-                translationMap[&quot;content&quot;] = translations.Content
-            }
-            if translations.Description != &quot;&quot; {
-                translationMap[&quot;description&quot;] = translations.Description
-            }
-            
-            // Bulk set translations using translation service
-            err := s.TranslationService.BulkSetTranslations(
-                &quot;post&quot;, post.ID, language, translationMap,
-            )
-            if err != nil {
-                s.Logger.Error(&quot;Failed to save translations&quot;, zap.Error(err))
-            }
-        }
-        
-        // Reload translations into the post fields
-        s.LoadTranslationsForPost(post)
-    }
-    
-    return post, nil
-}`, $event)">
-                  Copy
-                </button>
+                <span class="text-xs text-gray-400">Generated Service Pattern</span>
               </div>
-              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">func</span> (s *PostService) <span class="text-yellow-400">CreateWithTranslations</span>(request *CreatePostRequest) (*Post, <span class="text-purple-400">error</span>) {
-    <span class="text-green-400">// Create post with original content</span>
-    post := &Post{
-        Title:       translation.NewField(request.Title),
-        Content:     translation.NewField(request.Content),
-        Description: translation.NewField(request.Description),
-        AuthorID:    request.AuthorID,
-        Published:   request.Published,
+              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// All generated services follow this pattern</span>
+<span class="text-blue-400">type</span> YourEntityService <span class="text-blue-400">struct</span> {
+    DB                *gorm.DB
+    Emitter           *emitter.Emitter
+    Storage           *storage.ActiveStorage
+    Logger            logger.Logger
+    TranslationHelper *translation.Helper  <span class="text-gray-400">// Automatically injected</span>
+}
+
+<span class="text-blue-400">func</span> (s *YourEntityService) <span class="text-yellow-400">Create</span>(req *models.CreateYourEntityRequest) (*models.YourEntity, <span class="text-purple-400">error</span>) {
+    item := &models.YourEntity{
+        <span class="text-green-400">// For translation fields, use translation.NewField()</span>
+        TranslatableField: translation.NewField(req.TranslatableField),
+        <span class="text-green-400">// For regular fields, use directly</span>
+        RegularField: req.RegularField,
     }
-    
-    <span class="text-green-400">// Save to database</span>
-    <span class="text-blue-400">if</span> err := s.DB.Create(post).Error; err != <span class="text-purple-400">nil</span> {
+
+    <span class="text-blue-400">if</span> err := s.DB.Create(item).Error; err != <span class="text-purple-400">nil</span> {
         <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>, err
     }
+
+    <span class="text-blue-400">return</span> s.GetById(item.Id)  <span class="text-gray-400">// Automatically loads translations</span>
+}
+
+<span class="text-blue-400">func</span> (s *YourEntityService) <span class="text-yellow-400">GetById</span>(id <span class="text-purple-400">uint</span>) (*models.YourEntity, <span class="text-purple-400">error</span>) {
+    item := &models.YourEntity{}
     
-    <span class="text-green-400">// Add translations if provided</span>
-    <span class="text-blue-400">if</span> request.Translations != <span class="text-purple-400">nil</span> {
-        <span class="text-blue-400">for</span> language, translations := <span class="text-blue-400">range</span> request.Translations {
-            translationMap := <span class="text-yellow-400">make</span>(<span class="text-blue-400">map</span>[<span class="text-purple-400">string</span>]<span class="text-purple-400">string</span>)
-            
-            <span class="text-blue-400">if</span> translations.Title != <span class="text-green-400">""</span> {
-                translationMap[<span class="text-green-400">"title"</span>] = translations.Title
-            }
-            <span class="text-blue-400">if</span> translations.Content != <span class="text-green-400">""</span> {
-                translationMap[<span class="text-green-400">"content"</span>] = translations.Content
-            }
-            <span class="text-blue-400">if</span> translations.Description != <span class="text-green-400">""</span> {
-                translationMap[<span class="text-green-400">"description"</span>] = translations.Description
-            }
-            
-            <span class="text-green-400">// Bulk set translations using translation service</span>
-            err := s.TranslationService.BulkSetTranslations(
-                <span class="text-green-400">"post"</span>, post.ID, language, translationMap,
-            )
-            <span class="text-blue-400">if</span> err != <span class="text-purple-400">nil</span> {
-                s.Logger.Error(<span class="text-green-400">"Failed to save translations"</span>, zap.Error(err))
-            }
-        }
-        
-        <span class="text-green-400">// Reload translations into the post fields</span>
-        s.LoadTranslationsForPost(post)
+    <span class="text-blue-400">if</span> err := s.DB.First(item, id).Error; err != <span class="text-purple-400">nil</span> {
+        <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>, err
     }
-    
-    <span class="text-blue-400">return</span> post, <span class="text-purple-400">nil</span>
+
+    <span class="text-green-400">// Automatically load translations for all translatable fields</span>
+    <span class="text-blue-400">if</span> err := s.loadTranslationsForItem(item); err != <span class="text-purple-400">nil</span> {
+        s.Logger.Error(<span class="text-green-400">"Failed to load translations"</span>, logger.String(<span class="text-green-400">"error"</span>, err.Error()))
+    }
+
+    <span class="text-blue-400">return</span> item, <span class="text-purple-400">nil</span>
 }</code></pre>
             </div>
           </UCard>
@@ -375,119 +404,40 @@ languages := post.Title.GetAvailableLanguages()  <span class="text-gray-400">// 
             
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
-                <span class="text-xs text-gray-400">Loading Translations for Model Fields</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`func (s *PostService) LoadTranslationsForPost(post *Post) error {
-    // Load translations for each translatable field
-    fields := []struct {
-        field *translation.Field
-        name  string
-    }{
-        {&post.Title, &quot;title&quot;},
-        {&post.Content, &quot;content&quot;},
-        {&post.Description, &quot;description&quot;},
-    }
-    
-    for _, f := range fields {
-        err := s.TranslationService.LoadTranslationsForField(
-            f.field, &quot;post&quot;, post.ID, f.name,
-        )
-        if err != nil {
-            s.Logger.Error(&quot;Failed to load translations&quot;, 
-                zap.String(&quot;field&quot;, f.name), zap.Error(err))
-        }
-    }
-    
-    return nil
-}
-
-func (s *PostService) GetByID(id uint, language string) (*PostResponse, error) {
-    var post Post
-    if err := s.DB.First(&post, id).Error; err != nil {
-        return nil, err
-    }
-    
-    // Load all translations
-    s.LoadTranslationsForPost(&post)
-    
-    // Convert to response with specific language
-    response := &PostResponse{
-        ID:          post.ID,
-        AuthorID:    post.AuthorID,
-        Published:   post.Published,
-        CreatedAt:   post.CreatedAt,
-        UpdatedAt:   post.UpdatedAt,
-    }
-    
-    // Get translations for specific language or original
-    if language != &quot;&quot; {
-        response.Title = post.Title.GetTranslationOrOriginal(language)
-        response.Content = post.Content.GetTranslationOrOriginal(language)
-        response.Description = post.Description.GetTranslationOrOriginal(language)
-    } else {
-        response.Title = post.Title.String()
-        response.Content = post.Content.String()
-        response.Description = post.Description.String()
-    }
-    
-    return response, nil
-}`, $event)">
-                  Copy
-                </button>
+                <span class="text-xs text-gray-400">Auto-Generated Translation Loading</span>
               </div>
-              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">func</span> (s *PostService) <span class="text-yellow-400">LoadTranslationsForPost</span>(post *Post) <span class="text-purple-400">error</span> {
+              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// This method is automatically generated for each entity</span>
+<span class="text-blue-400">func</span> (s *YourEntityService) <span class="text-yellow-400">loadTranslationsForItem</span>(item *models.YourEntity) <span class="text-purple-400">error</span> {
+    <span class="text-blue-400">if</span> item == <span class="text-purple-400">nil</span> {
+        <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>
+    }
+
+    modelName := item.GetModelName()
+    modelId := item.GetId()
+
     <span class="text-green-400">// Load translations for each translatable field</span>
-    fields := []<span class="text-blue-400">struct</span> {
-        field *translation.Field
-        name  <span class="text-purple-400">string</span>
-    }{
-        {&post.Title, <span class="text-green-400">"title"</span>},
-        {&post.Content, <span class="text-green-400">"content"</span>},
-        {&post.Description, <span class="text-green-400">"description"</span>},
+    <span class="text-green-400">// This loops through all fields marked with 'translation' type</span>
+    <span class="text-blue-400">if</span> err := s.TranslationHelper.Service.LoadTranslationsForField(&item.TranslatableField1, modelName, modelId, <span class="text-green-400">"translatable_field1"</span>); err != <span class="text-purple-400">nil</span> {
+        s.Logger.Error(<span class="text-green-400">"Failed to load translations"</span>, logger.String(<span class="text-green-400">"error"</span>, err.Error()))
     }
     
-    <span class="text-blue-400">for</span> _, f := <span class="text-blue-400">range</span> fields {
-        err := s.TranslationService.LoadTranslationsForField(
-            f.field, <span class="text-green-400">"post"</span>, post.ID, f.name,
-        )
-        <span class="text-blue-400">if</span> err != <span class="text-purple-400">nil</span> {
-            s.Logger.Error(<span class="text-green-400">"Failed to load translations"</span>, 
-                zap.String(<span class="text-green-400">"field"</span>, f.name), zap.Error(err))
-        }
+    <span class="text-blue-400">if</span> err := s.TranslationHelper.Service.LoadTranslationsForField(&item.TranslatableField2, modelName, modelId, <span class="text-green-400">"translatable_field2"</span>); err != <span class="text-purple-400">nil</span> {
+        s.Logger.Error(<span class="text-green-400">"Failed to load translations"</span>, logger.String(<span class="text-green-400">"error"</span>, err.Error()))
     }
-    
+
     <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>
 }
 
-<span class="text-blue-400">func</span> (s *PostService) <span class="text-yellow-400">GetByID</span>(id <span class="text-purple-400">uint</span>, language <span class="text-purple-400">string</span>) (*PostResponse, <span class="text-purple-400">error</span>) {
-    <span class="text-blue-400">var</span> post Post
-    <span class="text-blue-400">if</span> err := s.DB.First(&post, id).Error; err != <span class="text-purple-400">nil</span> {
-        <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>, err
-    }
-    
-    <span class="text-green-400">// Load all translations</span>
-    s.LoadTranslationsForPost(&post)
-    
-    <span class="text-green-400">// Convert to response with specific language</span>
-    response := &PostResponse{
-        ID:          post.ID,
-        AuthorID:    post.AuthorID,
-        Published:   post.Published,
-        CreatedAt:   post.CreatedAt,
-        UpdatedAt:   post.UpdatedAt,
-    }
-    
-    <span class="text-green-400">// Get translations for specific language or original</span>
-    <span class="text-blue-400">if</span> language != <span class="text-green-400">""</span> {
-        response.Title = post.Title.GetTranslationOrOriginal(language)
-        response.Content = post.Content.GetTranslationOrOriginal(language)
-        response.Description = post.Description.GetTranslationOrOriginal(language)
-    } <span class="text-blue-400">else</span> {
-        response.Title = post.Title.String()
-        response.Content = post.Content.String()
-        response.Description = post.Description.String()
-    }
-    
-    <span class="text-blue-400">return</span> response, <span class="text-purple-400">nil</span>
+<span class="text-green-400">// Using the Translation Helper directly</span>
+<span class="text-blue-400">func</span> (s *YourEntityService) <span class="text-yellow-400">AddTranslation</span>(id <span class="text-purple-400">uint</span>, field, language, value <span class="text-purple-400">string</span>) <span class="text-purple-400">error</span> {
+    modelName := <span class="text-green-400">"your_entity"</span>  <span class="text-gray-400">// matches your model name</span>
+    <span class="text-blue-400">return</span> s.TranslationHelper.SetTranslation(modelName, id, field, value, language)
+}
+
+<span class="text-green-400">// Bulk set multiple translations</span>
+<span class="text-blue-400">func</span> (s *YourEntityService) <span class="text-yellow-400">BulkAddTranslations</span>(id <span class="text-purple-400">uint</span>, language <span class="text-purple-400">string</span>, translations <span class="text-blue-400">map</span>[<span class="text-purple-400">string</span>]<span class="text-purple-400">string</span>) <span class="text-purple-400">error</span> {
+    modelName := <span class="text-green-400">"your_entity"</span>
+    <span class="text-blue-400">return</span> s.TranslationHelper.BulkSetTranslations(modelName, id, language, translations)
 }</code></pre>
             </div>
           </UCard>
@@ -503,93 +453,40 @@ func (s *PostService) GetByID(id uint, language string) (*PostResponse, error) {
             <template #header>
               <div class="flex items-center space-x-2">
                 <UIcon name="i-lucide-puzzle" class="h-5 w-5 text-blue-500" />
-                <span class="font-semibold">Implementing Translatable Interface</span>
+                <span class="font-semibold">Module Integration (Auto-Generated)</span>
               </div>
             </template>
             
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
-                <span class="text-xs text-gray-400">post/module.go</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`package post
-
-import (
-    &quot;base/core/module&quot;
-    &quot;base/core/router&quot;
-    &quot;base/core/emitter&quot;
-    &quot;base/core/logger&quot;
-    &quot;base/core/storage&quot;
-    &quot;gorm.io/gorm&quot;
-)
-
-type Module struct {
-    module.DefaultModule
-    DB         *gorm.DB
-    Controller *PostController
-    Service    *PostService
-    Logger     logger.Logger
-    Storage    *storage.ActiveStorage
-}
-
-// Implement Translatable interface
-func (m *Module) TranslatedFields() []string {
-    return []string{&quot;title&quot;, &quot;content&quot;, &quot;description&quot;}
-}
-
-func NewPostModule(db *gorm.DB, router *router.RouterGroup, log logger.Logger, emitter *emitter.Emitter, storage *storage.ActiveStorage) module.Module {
-    service := NewPostService(db, emitter, storage, log)
-    controller := NewPostController(service, storage)
-
-    m := &Module{
-        DB:         db,
-        Service:    service,
-        Controller: controller,
-        Logger:     log,
-        Storage:    storage,
-    }
-
-    return m
-}`, $event)">
-                  Copy
-                </button>
+                <span class="text-xs text-gray-400">Generated Module Pattern</span>
               </div>
-              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">package</span> post
+              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// All generated modules follow this pattern</span>
+<span class="text-blue-400">func</span> <span class="text-yellow-400">Init</span>(deps module.Dependencies) module.Module {
+    <span class="text-green-400">// Translation service and helper are automatically created</span>
+    translationService := translation.NewTranslationService(deps.DB, deps.Emitter, deps.Storage, deps.Logger)
+    translationHelper := translation.NewHelper(translationService)
 
-<span class="text-blue-400">import</span> (
-    <span class="text-green-400">"base/core/module"</span>
-    <span class="text-green-400">"base/core/router"</span>
-    <span class="text-green-400">"base/core/emitter"</span>
-    <span class="text-green-400">"base/core/logger"</span>
-    <span class="text-green-400">"base/core/storage"</span>
-    <span class="text-green-400">"gorm.io/gorm"</span>
-)
+    <span class="text-green-400">// Service gets translation helper injected</span>
+    service := NewYourEntityService(deps.DB, deps.Emitter, deps.Storage, deps.Logger, translationHelper)
+    controller := NewYourEntityController(service, deps.Storage)
 
-<span class="text-blue-400">type</span> <span class="text-yellow-400">Module</span> <span class="text-blue-400">struct</span> {
-    module.DefaultModule
-    DB         *gorm.DB
-    Controller *PostController
-    Service    *PostService
-    Logger     logger.Logger
-    Storage    *storage.ActiveStorage
-}
-
-<span class="text-green-400">// Implement Translatable interface</span>
-<span class="text-blue-400">func</span> (m *Module) <span class="text-yellow-400">TranslatedFields</span>() []<span class="text-purple-400">string</span> {
-    <span class="text-blue-400">return</span> []<span class="text-purple-400">string</span>{<span class="text-green-400">"title"</span>, <span class="text-green-400">"content"</span>, <span class="text-green-400">"description"</span>}
-}
-
-<span class="text-blue-400">func</span> <span class="text-yellow-400">NewPostModule</span>(db *gorm.DB, router *router.RouterGroup, log logger.Logger, emitter *emitter.Emitter, storage *storage.ActiveStorage) module.Module {
-    service := NewPostService(db, emitter, storage, log)
-    controller := NewPostController(service, storage)
-
-    m := &Module{
-        DB:         db,
-        Service:    service,
-        Controller: controller,
-        Logger:     log,
-        Storage:    storage,
+    mod := &Module{
+        DB:                deps.DB,
+        Service:           service,
+        Controller:        controller,
+        TranslationHelper: translationHelper,
     }
 
-    <span class="text-blue-400">return</span> m
+    <span class="text-blue-400">return</span> mod
+}
+
+<span class="text-green-400">// Module structure includes translation helper</span>
+<span class="text-blue-400">type</span> Module <span class="text-blue-400">struct</span> {
+    DB                *gorm.DB
+    Service           *YourEntityService
+    Controller        *YourEntityController
+    TranslationHelper *translation.Helper
 }</code></pre>
             </div>
           </UCard>
@@ -605,61 +502,32 @@ func NewPostModule(db *gorm.DB, router *router.RouterGroup, log logger.Logger, e
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-gray-400">Using Helper Functions</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`// Get translated fields for a module
-translatedFields := translation.GetTranslatedFields(postModule)
-// Returns: [&quot;title&quot;, &quot;content&quot;, &quot;description&quot;]
-
-// Get all translations for a model instance
-helper := translation.NewHelper(translationService)
-translations, err := helper.GetTranslationsForModel(&quot;post&quot;, 1, &quot;es&quot;)
-if err == nil {
-    fmt.Println(translations)
-    // Output: map[&quot;title&quot;:&quot;Hola Mundo&quot; &quot;content&quot;:&quot;Contenido en español&quot;]
-}
-
-// Set a single translation
-err = helper.SetTranslation(&quot;post&quot;, 1, &quot;title&quot;, &quot;Nuevo Título&quot;, &quot;es&quot;)
-
-// Bulk set multiple translations
-translationMap := map[string]string{
-    &quot;title&quot;:       &quot;Título en Español&quot;,
-    &quot;content&quot;:     &quot;Contenido en Español&quot;,
-    &quot;description&quot;: &quot;Descripción en Español&quot;,
-}
-err = helper.BulkSetTranslations(&quot;post&quot;, 1, &quot;es&quot;, translationMap)
-
-// Get available languages for a model
-languages, err := helper.GetAvailableLanguages(&quot;post&quot;, 1)
-// Returns: [&quot;es&quot;, &quot;fr&quot;, &quot;de&quot;]`, $event)">
-                  Copy
-                </button>
+                
               </div>
-              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// Get translated fields for a module</span>
-translatedFields := translation.GetTranslatedFields(postModule)
-<span class="text-gray-400">// Returns: ["title", "content", "description"]</span>
+              <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// Frontend usage - accessing translation values</span>
+<span class="text-green-400">// From API response: {"title": {"original": "Title", "de": "Titel", "sq": "Titulli"}}</span>
 
-<span class="text-green-400">// Get all translations for a model instance</span>
-helper := translation.NewHelper(translationService)
-translations, err := helper.GetTranslationsForModel(<span class="text-green-400">"post"</span>, <span class="text-purple-400">1</span>, <span class="text-green-400">"es"</span>)
-<span class="text-blue-400">if</span> err == <span class="text-purple-400">nil</span> {
-    fmt.Println(translations)
-    <span class="text-gray-400">// Output: map["title":"Hola Mundo" "content":"Contenido en español"]</span>
+<span class="text-green-400">// Get specific language or fallback to original</span>
+<span class="text-blue-400">function</span> getTranslation(field, language) {
+    <span class="text-blue-400">return</span> field[language] || field.original;
 }
+
+<span class="text-green-400">// Usage examples</span>
+<span class="text-blue-400">const</span> title_de = getTranslation(post.title, <span class="text-green-400">"de"</span>);  <span class="text-gray-400">// "Titel"</span>
+<span class="text-blue-400">const</span> title_en = getTranslation(post.title, <span class="text-green-400">"en"</span>);  <span class="text-gray-400">// "Title" (fallback to original)</span>
+
+<span class="text-green-400">// Backend helper usage</span>
+helper := translation.NewHelper(translationService)
 
 <span class="text-green-400">// Set a single translation</span>
-err = helper.SetTranslation(<span class="text-green-400">"post"</span>, <span class="text-purple-400">1</span>, <span class="text-green-400">"title"</span>, <span class="text-green-400">"Nuevo Título"</span>, <span class="text-green-400">"es"</span>)
+err = helper.SetTranslation(<span class="text-green-400">"your_entity"</span>, <span class="text-purple-400">1</span>, <span class="text-green-400">"field_name"</span>, <span class="text-green-400">"Translated Value"</span>, <span class="text-green-400">"de"</span>)
 
 <span class="text-green-400">// Bulk set multiple translations</span>
 translationMap := <span class="text-blue-400">map</span>[<span class="text-purple-400">string</span>]<span class="text-purple-400">string</span>{
-    <span class="text-green-400">"title"</span>:       <span class="text-green-400">"Título en Español"</span>,
-    <span class="text-green-400">"content"</span>:     <span class="text-green-400">"Contenido en Español"</span>,
-    <span class="text-green-400">"description"</span>: <span class="text-green-400">"Descripción en Español"</span>,
+    <span class="text-green-400">"title"</span>: <span class="text-green-400">"Deutscher Titel"</span>,
+    <span class="text-green-400">"description"</span>: <span class="text-green-400">"Deutsche Beschreibung"</span>,
 }
-err = helper.BulkSetTranslations(<span class="text-green-400">"post"</span>, <span class="text-purple-400">1</span>, <span class="text-green-400">"es"</span>, translationMap)
-
-<span class="text-green-400">// Get available languages for a model</span>
-languages, err := helper.GetAvailableLanguages(<span class="text-green-400">"post"</span>, <span class="text-purple-400">1</span>)
-<span class="text-gray-400">// Returns: ["es", "fr", "de"]</span></code></pre>
+err = helper.BulkSetTranslations(<span class="text-green-400">"your_entity"</span>, <span class="text-purple-400">1</span>, <span class="text-green-400">"de"</span>, translationMap)</code></pre>
             </div>
           </UCard>
         </div>
@@ -758,39 +626,7 @@ languages, err := helper.GetAvailableLanguages(<span class="text-green-400">"pos
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-gray-400">Create Translation</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`POST /api/translations
-Content-Type: application/json
-
-{
-  &quot;key&quot;: &quot;title&quot;,
-  &quot;value&quot;: &quot;Hola Mundo&quot;,
-  &quot;model&quot;: &quot;post&quot;,
-  &quot;model_id&quot;: 1,
-  &quot;language&quot;: &quot;es&quot;
-}
-
-// Bulk Update Translations
-POST /api/translations/bulk
-Content-Type: application/json
-
-{
-  &quot;model&quot;: &quot;post&quot;,
-  &quot;model_id&quot;: 1,
-  &quot;language&quot;: &quot;es&quot;,
-  &quot;translations&quot;: {
-    &quot;title&quot;: &quot;Título en Español&quot;,
-    &quot;content&quot;: &quot;Contenido en Español&quot;,
-    &quot;description&quot;: &quot;Descripción en Español&quot;
-  }
-}
-
-// Get Model Translations
-GET /api/translations/models/post/1/es
-
-// List with Filters
-GET /api/translations?model=post&model_id=1&page=1&limit=20`, $event)">
-                  Copy
-                </button>
+                 
               </div>
               <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-purple-400">POST</span> <span class="text-green-400">/api/translations</span>
 <span class="text-blue-400">Content-Type:</span> application/json
@@ -844,37 +680,7 @@ GET /api/translations?model=post&model_id=1&page=1&limit=20`, $event)">
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-gray-400">Adaptive JSON Marshaling</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`// When no translations are loaded (original value only)
-{
-  &quot;title&quot;: &quot;Hello World&quot;,
-  &quot;content&quot;: &quot;This is the original content&quot;
-}
-
-// When translations are loaded (translation map)
-{
-  &quot;title&quot;: {
-    &quot;es&quot;: &quot;Hola Mundo&quot;,
-    &quot;fr&quot;: &quot;Bonjour le Monde&quot;,
-    &quot;de&quot;: &quot;Hallo Welt&quot;
-  },
-  &quot;content&quot;: {
-    &quot;es&quot;: &quot;Este es el contenido original&quot;,
-    &quot;fr&quot;: &quot;Ceci est le contenu original&quot;
-  }
-}
-
-// Language-specific API response
-GET /api/posts/1?lang=es
-{
-  &quot;id&quot;: 1,
-  &quot;title&quot;: &quot;Hola Mundo&quot;,
-  &quot;content&quot;: &quot;Este es el contenido original&quot;,
-  &quot;description&quot;: &quot;Descripción original&quot;,
-  &quot;author_id&quot;: 1,
-  &quot;published&quot;: true
-}`, $event)">
-                  Copy
-                </button>
+                
               </div>
               <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-gray-400">// When no translations are loaded (original value only)</span>
 {
@@ -895,15 +701,19 @@ GET /api/posts/1?lang=es
   }
 }
 
-<span class="text-gray-400">// Language-specific API response</span>
-<span class="text-purple-400">GET</span> <span class="text-green-400">/api/posts/1?lang=es</span>
+<span class="text-gray-400">// Actual API response (returns full translation field structure)</span>
+<span class="text-purple-400">GET</span> <span class="text-green-400">/api/posts/1</span>
 {
   <span class="text-blue-400">"id"</span>: <span class="text-purple-400">1</span>,
-  <span class="text-blue-400">"title"</span>: <span class="text-green-400">"Hola Mundo"</span>,
-  <span class="text-blue-400">"content"</span>: <span class="text-green-400">"Este es el contenido original"</span>,
-  <span class="text-blue-400">"description"</span>: <span class="text-green-400">"Descripción original"</span>,
-  <span class="text-blue-400">"author_id"</span>: <span class="text-purple-400">1</span>,
-  <span class="text-blue-400">"published"</span>: <span class="text-purple-400">true</span>
+  <span class="text-blue-400">"created_at"</span>: <span class="text-green-400">"2025-08-28T20:37:28.986523+02:00"</span>,
+  <span class="text-blue-400">"updated_at"</span>: <span class="text-green-400">"2025-08-28T20:37:28.986523+02:00"</span>,
+  <span class="text-blue-400">"deleted_at"</span>: <span class="text-purple-400">null</span>,
+  <span class="text-blue-400">"title"</span>: {
+    <span class="text-blue-400">"original"</span>: <span class="text-green-400">"Title"</span>,
+    <span class="text-blue-400">"de"</span>: <span class="text-green-400">"Titel"</span>,
+    <span class="text-blue-400">"sq"</span>: <span class="text-green-400">"Titulli"</span>
+  },
+  <span class="text-blue-400">"desc"</span>: <span class="text-green-400">"description"</span> // original value since no translation
 }</code></pre>
             </div>
           </UCard>
@@ -975,35 +785,7 @@ GET /api/posts/1?lang=es
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-gray-400">Advanced Query Examples</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`// Search in original values (faster)
-var posts []Post
-db.Where(&quot;title LIKE ?&quot;, &quot;%search%&quot;).Find(&posts)
-
-// Search in translations (requires join)
-db.Joins(&quot;LEFT JOIN translations t ON t.model = 'post' AND t.model_id = posts.id&quot;).
-   Where(&quot;t.key = 'title' AND t.language = 'es' AND t.value LIKE ?&quot;, &quot;%búsqueda%&quot;).
-   Find(&posts)
-
-// Get posts with specific translation availability
-db.Joins(&quot;INNER JOIN translations t ON t.model = 'post' AND t.model_id = posts.id&quot;).
-   Where(&quot;t.language = ?&quot;, &quot;es&quot;).
-   Distinct(&quot;posts.*&quot;).
-   Find(&posts)
-
-// Count translations by language
-type LanguageCount struct {
-    Language string
-    Count    int64
-}
-
-var counts []LanguageCount
-db.Model(&Translation{}).
-   Select(&quot;language, count(*) as count&quot;).
-   Where(&quot;model = ?&quot;, &quot;post&quot;).
-   Group(&quot;language&quot;).
-   Find(&counts)`, $event)">
-                  Copy
-                </button>
+                
               </div>
               <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// Search in original values (faster)</span>
 <span class="text-blue-400">var</span> posts []Post
@@ -1046,36 +828,7 @@ db.Model(&Translation{}).
             <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-4 overflow-x-auto">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-gray-400">Database Migration</span>
-                <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`// The Translation module automatically creates this table:
-CREATE TABLE translations (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP NOT NULL,
-    deleted_at TIMESTAMP,
-    \`key\` VARCHAR(255) NOT NULL,
-    value TEXT NOT NULL,
-    model VARCHAR(255) NOT NULL,
-    model_id INTEGER NOT NULL,
-    language VARCHAR(5) NOT NULL,
-    
-    INDEX idx_translation_lookup (\`key\`, model, model_id, language),
-    INDEX idx_deleted_at (deleted_at)
-);
-
-// Register the translation module in app/init.go
-func RegisterModules(deps module.Dependencies) error {
-    // Core modules
-    translationModule := translation.NewTranslationModule(
-        deps.DB, deps.Router, deps.Logger, deps.Emitter, deps.Storage,
-    )
-    module.RegisterModule(&quot;translation&quot;, translationModule)
-    
-    // Your app modules...
-    
-    return nil
-}`, $event)">
-                  Copy
-                </button>
+                
               </div>
               <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-green-400">// The Translation module automatically creates this table:</span>
 <span class="text-blue-400">CREATE TABLE</span> translations (
@@ -1115,19 +868,5 @@ func RegisterModules(deps module.Dependencies) error {
 
 <script setup lang="ts">
 import DocsLayout from '@/layouts/DocsLayout.vue'
-import { useClipboard } from '@vueuse/core'
-
-const { copy } = useClipboard()
-
-const copyToClipboard = async (text: string, event: Event) => {
-  await copy(text)
-  const button = event.target as HTMLElement
-  const originalText = button.textContent
-  button.textContent = 'Copied!'
-  button.classList.add('!text-green-400')
-  setTimeout(() => {
-    button.textContent = originalText
-    button.classList.remove('!text-green-400')
-  }, 2000)
-}
+ 
 </script>

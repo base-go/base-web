@@ -110,6 +110,12 @@ const items = ref<NavigationMenuItem[][]>([
             description: 'WebSocket for real-time communication. Built-in!',
             to: '/docs/websocket'
         },
+        {
+            label: 'Task Scheduler',
+            icon: 'i-lucide-clock',
+            description: 'Built-in task scheduling with cron and interval support',
+            to: '/docs/scheduler'
+        },
 
 
     ],

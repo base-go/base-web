@@ -2,7 +2,7 @@
 import TheHeader from '@/components/TheHeader.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import FeaturesSection from '@/components/FeaturesSection.vue'
-import ExamplesSection from '@/components/ExamplesSection.vue'
+import WhySection from '@/components/WhySection.vue'
 import StatsSection from '@/components/StatsSection.vue'
 import CTASection from '@/components/CTASection.vue'
 import TheFooter from '@/components/TheFooter.vue'
@@ -15,7 +15,7 @@ import TheFooter from '@/components/TheFooter.vue'
     <main>
       <HeroSection />
       <FeaturesSection />
-      <ExamplesSection />
+      <WhySection />
       <StatsSection />
       <CTASection />
     </main>

@@ -280,7 +280,7 @@ type Product struct {
     
     <span class="text-green-400 ">// File attachments</span>
     Manual      storage.Attachment   <span class="text-gray-400 text-nowrap">`gorm:"foreignKey:ModelId;references:Id"`</span>
-    Downloads   []storage.Attachment <span class="text-gray-400">`gorm:"foreignKey:ModelId;references:Id" multiple:"true"`</span>
+    Downloads   []storage.Attachment <span class="text-gray-400 text-nowrap">`gorm:"foreignKey:ModelId;references:Id" multiple:"true"`</span>
 }</code></pre>
             </div>
           </UCard>

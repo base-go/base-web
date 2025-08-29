@@ -664,11 +664,7 @@ Are you sure you want to destroy 2 module(s)? [Y/n] y
                   </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
-                  <tr>
-                    <td class="px-6 py-4 text-sm font-mono">--hot-reload</td>
-                    <td class="px-6 py-4 text-sm font-mono">-r</td>
-                    <td class="px-6 py-4 text-sm">Enable hot reloading using air</td>
-                  </tr>
+                  
                   <tr>
                     <td class="px-6 py-4 text-sm font-mono">--docs</td>
                     <td class="px-6 py-4 text-sm font-mono">-d</td>
@@ -686,7 +682,6 @@ Are you sure you want to destroy 2 module(s)? [Y/n] y
             <ul class="text-sm space-y-2">
               <li>• Ensures dependencies are up to date with <code>go mod tidy</code></li>
               <li>• Validates project structure (looks for main.go)</li>
-              <li>• Installs and configures Air for hot reloading (if -r flag used)</li>
               <li>• Generates Swagger documentation (if -d flag used)</li>
               <li>• Starts the application server</li>
               <li>• Sets environment variables for documentation</li>
@@ -701,16 +696,9 @@ Are you sure you want to destroy 2 module(s)? [Y/n] y
               <pre class="text-sm overflow-x-auto"><code class="language-bash"># Start server normally
 base start
 
-# Start with hot reloading
-base start -r
-base start --hot-reload
-
 # Start with documentation generation
 base start -d
-base start --docs
-
-# Start with both hot reloading and docs
-base start -r -d</code></pre>
+base start --docs</code></pre>
             </UCard>
           </UCard>
         </div>
@@ -720,7 +708,7 @@ base start -r -d</code></pre>
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">base docs</h2>
         
         <p class="text-gray-600 dark:text-gray-400 mb-6">
-          Generates OpenAPI 3.0 documentation by scanning controller annotations and creates static Swagger files for your API.
+          Generates Swagger 2.0 documentation using go-swagger by scanning controller annotations and creates static files for your API.
         </p>
 
         <UCard class="mb-6">
@@ -777,8 +765,8 @@ base start -r -d</code></pre>
               <h3 class="font-semibold">Generated Files</h3>
             </template>
             <ul class="text-sm space-y-2">
-              <li>• <strong>swagger.json</strong> - OpenAPI 3.0 specification in JSON format</li>
-              <li>• <strong>swagger.yaml</strong> - OpenAPI 3.0 specification in YAML format</li>
+              <li>• <strong>swagger.json</strong> - Swagger 2.0 specification in JSON format</li>
+              <li>• <strong>swagger.yaml</strong> - Swagger 2.0 specification in YAML format</li>
               <li>• <strong>docs.go</strong> - Go package with embedded documentation</li>
             </ul>
           </UCard>
