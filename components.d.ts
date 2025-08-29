@@ -9,7 +9,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CTASection: typeof import('./src/components/CTASection.vue')['default']
-    ExamplesSection: typeof import('./src/components/ExamplesSection.vue')['default']
     FeaturesSection: typeof import('./src/components/FeaturesSection.vue')['default']
     HeroSection: typeof import('./src/components/HeroSection.vue')['default']
     RestEndpointsSection: typeof import('./src/components/docs/RestEndpointsSection.vue')['default']
