@@ -936,15 +936,32 @@ Base Core updated successfully.</code></pre>
               <h3 class="font-semibold">Major Version Warnings</h3>
             </template>
             <UCard class="bg-gray-50 dark:bg-gray-800">
-              <pre class="text-sm overflow-x-auto"><code class="language-bash"># When major version is available without --major flag
+              <pre class="text-sm overflow-x-auto"><code class="language-bash"># When only minor/patch updates are available
 $ base upgrade
-📦 Minor update available: 1.5.2 → 1.6.0
+Checking for updates...
+Downloading version 2.0.9...
+Successfully upgraded to version 2.0.9!
 
-🚨 MAJOR VERSION ALSO AVAILABLE: 2.0.0
-🎉 NEW in v2.0.0: Automatic Relationship Detection!
-   • Fields ending with '_id' now auto-generate GORM relationships
-⚠️  To upgrade to the major version, use: base upgrade --major
-📚 Major version changelog: https://github.com/base-go/cmd/releases/tag/v2.0.0</code></pre>
+# When major version is available without --major flag
+$ base upgrade
+Checking for updates...
+You're already using the latest version (2.0.9)
+
+# When using --major flag for major version upgrade
+$ base upgrade --major
+Checking for updates...
+
+🚨 MAJOR VERSION UPGRADE DETECTED: 2.0.9 → 3.0.0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  This is a MAJOR version upgrade that may contain breaking changes!
+
+📚 Full changelog: https://github.com/base-go/cmd/releases/tag/v3.0.0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Do you want to proceed with the upgrade? [y/N]: y
+
+Downloading version 3.0.0...
+Successfully upgraded to version 3.0.0!</code></pre>
             </UCard>
           </UCard>
 
