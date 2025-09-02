@@ -120,7 +120,7 @@
                   <div class="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
                   <div>
                     <h5 class="font-medium text-gray-900 dark:text-white">JWT Token Generation</h5>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Signed JWT with user ID, roles, and expiration</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Signed JWT with user ID, extended data, and expiration</p>
                   </div>
                 </div>
                 
@@ -167,17 +167,28 @@
                 </div>
 
                 <div>
-                  <h5 class="font-medium text-gray-900 dark:text-white mb-2">Response</h5>
+                  <h5 class="font-medium text-gray-900 dark:text-white mb-2">Response with Role Information</h5>
                   <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
-                    <pre class="text-sm text-gray-700 dark:text-gray-300"><code>{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "user": {
-    "id": 1,
-    "email": "user@example.com",
-    "first_name": "John",
-    "last_name": "Doe"
-  },
-  "expires_at": "2024-12-01T12:00:00Z"
+                    <pre class="text-sm text-gray-700 dark:text-gray-300"><code class="language-json">{
+  "id": 1,
+  "first_name": "John",
+  "last_name": "Doe",
+  "username": "johndoe",
+  "phone": "+1234567890",
+  "email": "john@example.com",
+  "role_id": 1,
+  "role_name": "Owner",
+  "avatar_url": "",
+  "last_login": "2025-09-02T15:44:05+02:00",
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "exp": 1756908308,
+  "extend": {
+    "role": {
+      "id": 1,
+      "name": "Owner"
+    },
+    "user_id": 1
+  }
 }</code></pre>
                   </div>
                 </div>
@@ -316,6 +327,104 @@ GITHUB_REDIRECT_URL=http://localhost:8100/api/oauth/github/callback`, $event)">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Authorization & Permissions</h2>
           
           <div class="space-y-6">
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-2">
+                  <UIcon name="i-lucide-crown" class="h-4 w-4 text-yellow-500" />
+                  <span class="font-semibold">First User Owner System</span>
+                </div>
+              </template>
+              
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  Base Framework automatically assigns the <strong>Owner</strong> role to the first user who registers, ensuring secure system initialization without manual intervention:
+                </p>
+
+                <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                  <h5 class="font-medium text-yellow-900 dark:text-yellow-100 mb-2">👑 Automatic Role Assignment</h5>
+                  <div class="grid gap-3 md:grid-cols-2 text-sm">
+                    <div>
+                      <strong class="text-yellow-900 dark:text-yellow-100">First User</strong>
+                      <ul class="text-yellow-800 dark:text-yellow-200 mt-1 space-y-1">
+                        <li>• Automatically receives <strong>Owner</strong> role</li>
+                        <li>• Full system access and control</li>
+                        <li>• Can manage all users and permissions</li>
+                        <li>• No manual role assignment needed</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <strong class="text-yellow-900 dark:text-yellow-100">Subsequent Users</strong>
+                      <ul class="text-yellow-800 dark:text-yellow-200 mt-1 space-y-1">
+                        <li>• Automatically receive <strong>Member</strong> role</li>
+                        <li>• Standard limited access</li>
+                        <li>• Can be promoted by Owner/Administrator</li>
+                        <li>• Secure default permissions</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </UCard>
+
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-2">
+                  <UIcon name="i-lucide-users" class="h-4 w-4 text-blue-500" />
+                  <span class="font-semibold">Role Hierarchy</span>
+                </div>
+              </template>
+              
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  Base Framework uses a hierarchical role system with four default roles, each with specific permissions and access levels:
+                </p>
+
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                    <div class="w-8 h-8 bg-yellow-500 rounded flex items-center justify-center">
+                      <UIcon name="i-lucide-crown" class="h-4 w-4 text-white" />
+                    </div>
+                    <div class="flex-1">
+                      <h5 class="font-medium text-yellow-900 dark:text-yellow-100">Owner (Role ID: 1)</h5>
+                      <p class="text-sm text-yellow-800 dark:text-yellow-200">Full system access • Manage all users • System configuration</p>
+                    </div>
+                    <UBadge color="yellow" variant="soft">First User</UBadge>
+                  </div>
+
+                  <div class="flex items-center space-x-3 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                    <div class="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
+                      <UIcon name="i-lucide-shield" class="h-4 w-4 text-white" />
+                    </div>
+                    <div class="flex-1">
+                      <h5 class="font-medium text-red-900 dark:text-red-100">Administrator (Role ID: 2)</h5>
+                      <p class="text-sm text-red-800 dark:text-red-200">Administrative access • User management • Most operations</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                    <div class="w-8 h-8 bg-green-500 rounded flex items-center justify-center">
+                      <UIcon name="i-lucide-user" class="h-4 w-4 text-white" />
+                    </div>
+                    <div class="flex-1">
+                      <h5 class="font-medium text-green-900 dark:text-green-100">Member (Role ID: 3)</h5>
+                      <p class="text-sm text-green-800 dark:text-green-200">Standard access • Limited permissions • Default for new users</p>
+                    </div>
+                    <UBadge color="green" variant="soft">Default</UBadge>
+                  </div>
+
+                  <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div class="w-8 h-8 bg-gray-500 rounded flex items-center justify-center">
+                      <UIcon name="i-lucide-eye" class="h-4 w-4 text-white" />
+                    </div>
+                    <div class="flex-1">
+                      <h5 class="font-medium text-gray-900 dark:text-gray-100">Viewer (Role ID: 4)</h5>
+                      <p class="text-sm text-gray-600 dark:text-gray-300">Read-only access • View permissions only</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </UCard>
+
             <UCard>
               <template #header>
                 <div class="flex items-center space-x-2">
@@ -472,6 +581,235 @@ API_KEY=api`, $event)">
   -H <span class="text-green-400">"X-API-Key: api"</span></code></pre>
                     </div>
                   </div>
+                </div>
+              </div>
+            </UCard>
+          </div>
+        </section>
+
+        <!-- Extended Authentication -->
+        <section>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Extended Authentication</h2>
+          
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Base Framework supports extending JWT tokens with custom data through the <UKbd size="sm">app.Extend()</UKbd> function. This allows you to include additional context like company IDs, roles, or any other data in both the authentication response and JWT token payload.
+          </p>
+
+          <div class="grid gap-6 lg:grid-cols-2">
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-2">
+                  <UIcon name="i-lucide-code" class="h-4 w-4 text-blue-500" />
+                  <span class="font-semibold">app.Extend() Function</span>
+                </div>
+              </template>
+              
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  Located at <UKbd size="sm">app/init.go</UKbd>, this function is called during authentication to extend the user context with additional data. <strong>You must customize this function in your app to add extended data.</strong>
+                </p>
+
+                <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-3 overflow-x-auto">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs text-gray-400">app/init.go</span>
+                    <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`func Extend(user_id uint) any {
+    // Get database instance
+    if database.DB == nil {
+        return map[string]any{
+            &quot;user_id&quot;: user_id,
+        }
+    }
+
+    // Example: Add company_id to the context
+    return map[string]any{
+        &quot;user_id&quot;:    user_id,
+        &quot;company_id&quot;: 1,
+    }
+}`, $event)">
+                      Copy
+                    </button>
+                  </div>
+                  <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">func</span> <span class="text-yellow-400">Extend</span>(user_id <span class="text-green-400">uint</span>) <span class="text-green-400">any</span> {
+    <span class="text-gray-500">// Get database instance</span>
+    <span class="text-blue-400">if</span> database.DB == <span class="text-purple-400">nil</span> {
+        <span class="text-blue-400">return</span> <span class="text-green-400">map</span>[<span class="text-green-400">string</span>]<span class="text-green-400">any</span>{
+            <span class="text-red-400">"user_id"</span>: user_id,
+        }
+    }
+
+    <span class="text-gray-500">// Example: Add company_id to the context</span>
+    <span class="text-blue-400">return</span> <span class="text-green-400">map</span>[<span class="text-green-400">string</span>]<span class="text-green-400">any</span>{
+        <span class="text-red-400">"user_id"</span>:    user_id,
+        <span class="text-red-400">"company_id"</span>: <span class="text-purple-400">1</span>,
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+                  <p class="text-sm text-red-800 dark:text-red-200">
+                    <strong>⚠️ Important:</strong> You must modify the <UKbd size="xs">app.Extend()</UKbd> function in <UKbd size="xs">base/app/init.go</UKbd> to add your custom extended data. The default implementation only returns the user_id.
+                  </p>
+                </div>
+              </div>
+            </UCard>
+
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-2">
+                  <UIcon name="i-lucide-key" class="h-4 w-4 text-green-500" />
+                  <span class="font-semibold">Enhanced Login Response</span>
+                </div>
+              </template>
+              
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  When <UKbd size="sm">app.Extend()</UKbd> returns data, it's included in both the login response and embedded in the JWT token payload.
+                </p>
+
+                <div>
+                  <h5 class="font-medium text-gray-900 dark:text-white mb-2">Login Request</h5>
+                  <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-3 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs text-gray-400">POST /api/auth/login</span>
+                      <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`curl -X 'POST' \\
+  'http://localhost:8100/api/auth/login' \\
+  -H 'accept: application/json' \\
+  -H 'X-Api-Key: api' \\
+  -H 'Content-Type: application/json' \\
+  -d '{
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;password&quot;: &quot;password123&quot;
+  }'`, $event)">
+                        Copy
+                      </button>
+                    </div>
+                    <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code><span class="text-blue-400">curl</span> -X <span class="text-green-400">'POST'</span> \\
+  <span class="text-green-400">'http://localhost:8100/api/auth/login'</span> \\
+  -H <span class="text-green-400">'accept: application/json'</span> \\
+  -H <span class="text-green-400">'X-Api-Key: api'</span> \\
+  -H <span class="text-green-400">'Content-Type: application/json'</span> \\
+  -d <span class="text-green-400">'{
+    "email": "john@example.com",
+    "password": "password123"
+  }'</span></code></pre>
+                  </div>
+                </div>
+
+                <div>
+                  <h5 class="font-medium text-gray-900 dark:text-white mb-2">Enhanced Response</h5>
+                  <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-3 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs text-gray-400">Response with Extended Data</span>
+                      <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`{
+  &quot;id&quot;: 1,
+  &quot;first_name&quot;: &quot;John&quot;,
+  &quot;last_name&quot;: &quot;Doe&quot;,
+  &quot;username&quot;: &quot;johndoe&quot;,
+  &quot;phone&quot;: &quot;+1234567890&quot;,
+  &quot;email&quot;: &quot;john@example.com&quot;,
+  &quot;avatar_url&quot;: &quot;&quot;,
+  &quot;last_login&quot;: &quot;2025-09-02T15:42:51+02:00&quot;,
+  &quot;accessToken&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;,
+  &quot;exp&quot;: 1756907010,
+  &quot;extend&quot;: {
+    &quot;company_id&quot;: 1,
+    &quot;user_id&quot;: 1
+  }
+}`, $event)">
+                        Copy
+                      </button>
+                    </div>
+                    <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code>{
+  <span class="text-red-400">"id"</span>: <span class="text-purple-400">1</span>,
+  <span class="text-red-400">"first_name"</span>: <span class="text-green-400">"John"</span>,
+  <span class="text-red-400">"last_name"</span>: <span class="text-green-400">"Doe"</span>,
+  <span class="text-red-400">"username"</span>: <span class="text-green-400">"johndoe"</span>,
+  <span class="text-red-400">"phone"</span>: <span class="text-green-400">"+1234567890"</span>,
+  <span class="text-red-400">"email"</span>: <span class="text-green-400">"john@example.com"</span>,
+  <span class="text-red-400">"avatar_url"</span>: <span class="text-green-400">""</span>,
+  <span class="text-red-400">"last_login"</span>: <span class="text-green-400">"2025-09-02T15:42:51+02:00"</span>,
+  <span class="text-red-400">"accessToken"</span>: <span class="text-green-400">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span>,
+  <span class="text-red-400">"exp"</span>: <span class="text-purple-400">1756907010</span>,
+  <span class="text-red-400">"extend"</span>: {
+    <span class="text-red-400">"company_id"</span>: <span class="text-purple-400">1</span>,
+    <span class="text-red-400">"user_id"</span>: <span class="text-purple-400">1</span>
+  }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </UCard>
+          </div>
+
+          <div class="mt-6">
+            <UCard>
+              <template #header>
+                <div class="flex items-center space-x-2">
+                  <UIcon name="i-lucide-shield-check" class="h-4 w-4 text-purple-500" />
+                  <span class="font-semibold">JWT Token Structure</span>
+                </div>
+              </template>
+              
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  The JWT token payload includes the extended data, making it available for authorization checks and middleware without additional database queries.
+                </p>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <h5 class="font-medium text-gray-900 dark:text-white mb-2">JWT Payload Structure</h5>
+                    <div class="relative bg-gray-900 dark:bg-gray-950 rounded-lg p-3 overflow-x-auto">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs text-gray-400">Decoded JWT Payload</span>
+                        <button class="copy-button text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors" @click="copyToClipboard(`{
+  &quot;exp&quot;: 1756907010,
+  &quot;extend&quot;: {
+    &quot;company_id&quot;: 1,
+    &quot;user_id&quot;: 1
+  },
+  &quot;user_id&quot;: 1
+}`, $event)">
+                          Copy
+                        </button>
+                      </div>
+                      <pre class="text-sm text-gray-300 whitespace-pre-wrap"><code>{
+  <span class="text-red-400">"exp"</span>: <span class="text-purple-400">1756907010</span>,
+  <span class="text-red-400">"extend"</span>: {
+    <span class="text-red-400">"company_id"</span>: <span class="text-purple-400">1</span>,
+    <span class="text-red-400">"user_id"</span>: <span class="text-purple-400">1</span>
+  },
+  <span class="text-red-400">"user_id"</span>: <span class="text-purple-400">1</span>
+}</code></pre>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h5 class="font-medium text-gray-900 dark:text-white mb-2">Common Use Cases</h5>
+                    <div class="space-y-3">
+                      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+                        <h6 class="font-medium text-blue-900 dark:text-blue-100 text-sm mb-1">Multi-tenant Applications</h6>
+                        <p class="text-xs text-blue-800 dark:text-blue-200">Include company_id or tenant_id for data isolation</p>
+                      </div>
+                      <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+                        <h6 class="font-medium text-green-900 dark:text-green-100 text-sm mb-1">Role-based Access</h6>
+                        <p class="text-xs text-green-800 dark:text-green-200">Embed user roles and permissions in the token</p>
+                      </div>
+                      <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-3">
+                        <h6 class="font-medium text-purple-900 dark:text-purple-100 text-sm mb-1">Context Data</h6>
+                        <p class="text-xs text-purple-800 dark:text-purple-200">Include any additional context your app needs</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                  <h5 class="font-medium text-green-900 dark:text-green-100 mb-2">🚀 Benefits</h5>
+                  <ul class="text-sm text-green-800 dark:text-green-200 space-y-1">
+                    <li>• <strong>Reduced Database Queries:</strong> Context data is embedded in the JWT token</li>
+                    <li>• <strong>Consistent Data:</strong> Same extended data available in both response and token</li>
+                    <li>• <strong>Flexible Implementation:</strong> Customize the Extend function for your specific needs</li>
+                    <li>• <strong>Middleware Ready:</strong> Extended data is available in authorization middleware</li>
+                  </ul>
                 </div>
               </div>
             </UCard>
