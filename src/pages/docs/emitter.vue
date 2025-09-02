@@ -15,7 +15,7 @@
         <UAlert color="info" variant="soft" class="mb-6">
           <template #title>🔗 Event-Driven Architecture</template>
           <template #description>
-            Base Framework's Emitter provides a thread-safe, async event system that enables decoupled communication between modules. It supports synchronous and asynchronous event emission, context cancellation, timeouts, and automatic panic recovery for robust event handling.
+            Base Framework's Emitter provides a thread-safe, async event system that enables decoupled communication between structures. It supports synchronous and asynchronous event emission, context cancellation, timeouts, and automatic panic recovery for robust event handling.
           </template>
         </UAlert>
 
@@ -422,7 +422,7 @@ e.On(<span class="text-green-400">"file.uploaded"</span>, <span class="text-blue
         <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>, err
     }
     
-    <span class="text-green-400">// Emit events for other modules to handle</span>
+    <span class="text-green-400">// Emit events for other structures to handle</span>
     s.Emitter.Emit(<span class="text-green-400">"user.created"</span>, user)
     s.Emitter.EmitAsync(<span class="text-green-400">"analytics.user_registered"</span>, user)
     
@@ -520,7 +520,7 @@ e.On(<span class="text-green-400">"file.uploaded"</span>, <span class="text-blue
         <span class="text-blue-400">return</span> <span class="text-purple-400">nil</span>, err
     }
     
-    <span class="text-green-400">// Emit creation event for other modules</span>
+    <span class="text-green-400">// Emit creation event for other structures</span>
     s.Emitter.Emit(<span class="text-green-400">"post.created"</span>, post)
     
     <span class="text-blue-400">return</span> post, <span class="text-purple-400">nil</span>
@@ -592,7 +592,7 @@ e.On(<span class="text-green-400">"file.uploaded"</span>, <span class="text-blue
     <span class="text-green-400">// Create shared emitter instance</span>
     emitter := emitter.New()
     
-    <span class="text-green-400">// Register modules with emitter dependency injection</span>
+    <span class="text-green-400">// Register structures with emitter dependency injection</span>
     authModule := authentication.NewAuthenticationModule(
         app.db, 
         app.router.Group(<span class="text-green-400">"/auth"</span>), 
@@ -616,7 +616,7 @@ e.On(<span class="text-green-400">"file.uploaded"</span>, <span class="text-blue
         app.emailSender,
     )
     
-    <span class="text-green-400">// Store modules</span>
+    <span class="text-green-400">// Store structures</span>
     app.modules = []module.Module{
         authModule,
         postModule,
@@ -637,7 +637,7 @@ e.On(<span class="text-green-400">"file.uploaded"</span>, <span class="text-blue
 }
 
 <span class="text-blue-400">func</span> (m *ModuleInitializer) <span class="text-yellow-400">InitializeAll</span>() {
-    <span class="text-green-400">// Initialize all modules with shared dependencies</span>
+    <span class="text-green-400">// Initialize all structures with shared dependencies</span>
     modules := []module.Module{
         authentication.NewAuthenticationModule(m.DB, m.Router.Group(<span class="text-green-400">"/auth"</span>), m.EmailSender, m.Logger, m.Emitter),
         media.NewMediaModule(m.DB, m.Router.Group(<span class="text-green-400">"/media"</span>), m.Storage, m.Emitter, m.Logger),

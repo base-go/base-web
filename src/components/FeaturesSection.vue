@@ -19,7 +19,7 @@ const features: Feature[] = [
   {
     icon: SparklesIcon,
     title: 'Automatic Code Generation',
-    description: 'Generate complete modules with models, services, controllers, and tests from simple field definitions. No boilerplate, just results.'
+    description: 'Generate complete structures with models, services, controllers, and tests from simple field definitions. No boilerplate, just results.'
   },
   {
     icon: LinkIcon,
@@ -29,11 +29,11 @@ const features: Feature[] = [
   {
     icon: CubeTransparentIcon,
     title: 'Modular Architecture',
-    description: 'HMVC pattern with dependency injection. Each module is self-contained with its own controllers, services, and models.'
+    description: 'HMVC pattern with dependency injection. Each structure is self-contained with its own controllers, services, and models.'
   },
   {
     icon: DocumentTextIcon,
-    title: '15+ Built-in Core Modules',
+    title: '15+ Built-in Core Structures',
     description: 'Authentication, authorization, storage, email, websockets, scheduler, translation, and more. Everything you need for production APIs.'
   },
   {

@@ -83,7 +83,7 @@ cd my-blog-api
             </div>
           </UCard>
 
-          <!-- Step 2: Generate Modules -->
+          <!-- Step 2: Generate Structures -->
           <UCard>
             <template #header>
               <div class="flex items-center gap-3">

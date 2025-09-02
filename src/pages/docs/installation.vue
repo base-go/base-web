@@ -167,7 +167,7 @@ Go version: go1.24.5</code></pre>
           <p>Once Base CLI is installed, you can:</p>
           <ul>
             <li><strong>Create a new project:</strong> <UKbd class="mx-1">base new my-project</UKbd></li>
-            <li><strong>Generate modules:</strong> <UKbd class="mx-1">base g User name:string email:string</UKbd></li>
+            <li><strong>Generate structures:</strong> <UKbd class="mx-1">base g User name:string email:string</UKbd></li>
             <li><strong>Start development server:</strong> <UKbd class="mx-1">base start -r</UKbd></li>
             <li><strong>View help:</strong> <UKbd class="mx-1">base help</UKbd></li>
           </ul>

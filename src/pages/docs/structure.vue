@@ -35,7 +35,7 @@
 │   ├── models/                   <span class="text-gray-500"># Database models (GORM)</span>
 │   └── init.go                   <span class="text-gray-500"># App initialization</span>
 ├── @base/core/                   <span class="text-blue-400"># Base Framework Core (@base/core)</span>
-│   ├── app/                      <span class="text-cyan-400"># Built-in app modules</span>
+│   ├── app/                      <span class="text-cyan-400"># Built-in app structures</span>
 │   │   ├── authentication/       <span class="text-gray-500"># Auth system</span>
 │   │   ├── authorization/        <span class="text-gray-500"># Authorization</span>
 │   │   ├── media/                <span class="text-gray-500"># Media handling</span>
@@ -83,7 +83,7 @@
                   </div>
                   <div>
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">app/</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Application modules and models</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Application structures and models</p>
                   </div>
                 </div>
               </template>
@@ -148,8 +148,8 @@
               <UAlert 
                 color="success" 
                 variant="soft" 
-                title="Framework Core Modules" 
-                description="The core/ directory contains Base Framework's core system modules (@base/core/*) that provide infrastructure services to your application modules."
+                title="Framework Core Structures" 
+                description="The core/ directory contains Base Framework's core system structures (@base/core/*) that provide infrastructure services to your application structures."
                 class="mb-6"
               />
               
@@ -302,7 +302,7 @@
                   </div>
                   <div>
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">@base/core/app/</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Built-in application modules</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Built-in application structures</p>
                   </div>
                 </div>
               </template>
@@ -310,8 +310,8 @@
               <UAlert 
                 color="cyan" 
                 variant="soft" 
-                title="Ready-to-Use App Modules" 
-                description="Pre-built application modules that provide common functionality out of the box."
+                title="Ready-to-Use App Structures" 
+                description="Pre-built application structures that provide common functionality out of the box."
                 class="mb-6"
               />
               
@@ -458,8 +458,8 @@
           <UAlert 
             color="indigo" 
             variant="soft" 
-            title="Built-in Modules Power Your App" 
-            description="Base Framework's built-in core modules provide infrastructure services that your application modules consume through dependency injection."
+            title="Built-in Structures Power Your App" 
+            description="Base Framework's built-in core structures provide infrastructure services that your application structures consume through dependency injection."
             class="mb-6"
           />
           
@@ -477,7 +477,7 @@
                   <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
                     <h4 class="font-medium text-blue-900 dark:text-blue-100 mb-2">
                       <UIcon name="i-lucide-cpu" class="h-4 w-4 inline mr-1" />
-                      Core Framework Modules Provide
+                      Core Framework Structures Provide
                     </h4>
                     <ul class="text-sm text-blue-800 dark:text-blue-200 space-y-1">
                       <li>• HTTP Router & Context (@base/core)</li>
@@ -492,7 +492,7 @@
                   <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
                     <h4 class="font-medium text-green-900 dark:text-green-100 mb-2">
                       <UIcon name="i-lucide-package" class="h-4 w-4 inline mr-1" />
-                      Your App Modules Consume
+                      Your App Structures Consume
                     </h4>
                     <ul class="text-sm text-green-800 dark:text-green-200 space-y-1">
                       <li>• Route Registration (user code)</li>

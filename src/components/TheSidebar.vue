@@ -57,6 +57,12 @@ const items = ref<NavigationMenuItem[][]>([
             to: '/docs/configuration'
         },
         {
+            label: 'Middleware',
+            icon: 'i-lucide-shield-check',
+            description: 'Middleware and how to create them',
+            to: '/docs/middleware'
+        },
+        {
             label: 'Base Helpers',
             icon: 'i-lucide-folder-tree',
             description: 'Base helpers for easing common tasks',
@@ -88,25 +94,25 @@ const items = ref<NavigationMenuItem[][]>([
         },
         {
             label: 'Validator',
-            icon: 'i-lucide-mail',
+            icon: 'i-lucide-check-square-2',
             description: 'Full validation system for data validation',
             to: '/docs/validator'
         },
         {
             label: 'Logger',
-            icon: 'i-lucide-mail',
+            icon: 'i-lucide-file-text',
             description: 'Full logging system for debugging and monitoring',
             to: '/docs/logger'
         },
         {
             label: 'Translation',
-            icon: 'i-lucide-mail',
+            icon: 'i-lucide-languages',
             description: 'Full translation system for multilanguage support',
             to: '/docs/translation'
         },
         {
             label: 'WebSocket',
-            icon: 'i-lucide-mail',
+            icon: 'i-lucide-plug',
             description: 'WebSocket for real-time communication. Built-in!',
             to: '/docs/websocket'
         },
@@ -140,7 +146,7 @@ const items = ref<NavigationMenuItem[][]>([
     {
         label: 'base destroy',
         icon: 'i-lucide-terminal',
-        description: 'Remove modules safely',
+        description: 'Remove structures safely',
         to: '/docs/cli/#destroy',
         onClick: () => scrollToSection('destroy')
     },
@@ -181,8 +187,8 @@ const items = ref<NavigationMenuItem[][]>([
         {
             label: 'GitHub',
             icon: 'i-simple-icons-github',
-            badge: 'v2.0.1',
-            to: 'https://github.com/base-go/cmd',
+            badge: 'v2.1.0',
+            to: 'https://github.com/base-go/base-core',
             target: '_blank'
         },
         {

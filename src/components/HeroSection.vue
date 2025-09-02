@@ -108,8 +108,8 @@ const codeExamples: CodeExample[] = [
 <span class="text-blue-400">base start</span> <span class="text-gray-400"># Server running on :8100</span>`
   },
   {
-    title: 'Generate Modules',
-    description: 'Create complete CRUD APIs with a single command',
+    title: 'Generate Structures',
+    description: 'Create complete CRUD structures with a single command',
     language: 'bash',
     code: `<span class="text-green-400"># Generate a blog post with relationships</span>
 <span class="text-blue-400">base g</span> <span class="text-yellow-400">Post</span> title:string content:text author_id:uint
